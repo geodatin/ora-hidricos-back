@@ -30,8 +30,8 @@
                         }
                     }
                 ],
-                "summary": "List categories",
-                "description": "List all created categories",
+                "summary": "Search Territory",
+                "description": "Search for the territory with like strings",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -45,8 +45,11 @@
                                             "name": {
                                                 "type": "string"
                                             },
-                                            "description": {
+                                            "type": {
                                                 "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer"
                                             }
                                         }
                                     }
@@ -56,8 +59,128 @@
                     }
                 }
             }
+        },
+        "/waterSurface/statistics/{territoryType}": {
+            "get": {
+                "description": "Return the statistics for the territory",
+                "tags": [
+                    "Water Surface"
+                ],
+                "summary": "Water Surface statistics",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Territory Code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "currentArea": {
+                                            "type": "number"
+                                        },
+                                        "winLossArea": {
+                                            "type": "number"
+                                        },
+                                        "winLossPercent": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterSurface/timeSeries/{territoryType}": {
+            "get": {
+                "description": "Return the time series for the territory",
+                "tags": [
+                    "Water Surface"
+                ],
+                "summary": "Water Surface time series",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Territory Code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1984,
+                                                1985,
+                                                1986,
+                                                1987,
+                                                1988
+                                            ]
+                                        },
+                                        "y": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number",
+                                                "example": 7794285.69
+                                            },
+                                            "example": [
+                                                7794285.69,
+                                                7947833.43,
+                                                9010518.08,
+                                                8857033.11,
+                                                8962340.42
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-    },
-    "definitions": {},
-    "components": {}
+    }
 }
