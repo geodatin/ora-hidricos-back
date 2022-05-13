@@ -1,4 +1,4 @@
-import { GetTerritoryNameController } from '@modules/territory/services/getTerritoryNamesService/GetTerritoryNameController'
+import { GetTerritoryNameController } from '@modules/territory/services/getTerritoryNames/GetTerritoryNameController'
 import { Router } from 'express'
 
 export const territoryRoutes = Router()
