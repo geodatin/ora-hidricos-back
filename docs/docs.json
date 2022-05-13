@@ -108,6 +108,22 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -173,6 +189,171 @@
                                                 8857033.11,
                                                 8962340.42
                                             ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterSurface/ranking/{territoryType}/{rankingType}": {
+            "get": {
+                "description": "Return the ranking for the territory",
+                "tags": [
+                    "Water Surface"
+                ],
+                "summary": "Water Surface ranking",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "rankingType",
+                        "in": "path",
+                        "description": "Ranking Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "area",
+                                "winLoss"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Territory Code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        },
+                                        "focusPage": {
+                                            "type": "number",
+                                            "example": 119
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
                                         }
                                     }
                                 }
