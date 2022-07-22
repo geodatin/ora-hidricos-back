@@ -4,6 +4,10 @@ import { AmazonStateRepository } from '@modules/territory/infrastructure/typeorm
 import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCityRepository'
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
+import { FishMercuryRepository } from '@modules/waterResources/collector/infrastructure/repositories/FishMercuryRepository'
+import { HumanMercuryRepository } from '@modules/waterResources/collector/infrastructure/repositories/HumanMercuryRepository'
+import { IFishMercuryRepository } from '@modules/waterResources/collector/repositories/IFishMercuryRepository'
+import { IHumanMercuryRepository } from '@modules/waterResources/collector/repositories/IHumanMercuryRepository'
 import { WaterSurfaceCityAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCityAnnualRepository'
 import { WaterSurfaceCountryAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCountryAnnualRepository'
 import { WaterSurfaceStateAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceStateAnnualRepository'
@@ -38,4 +42,14 @@ container.registerSingleton<IWaterSurfaceRepository>(
 container.registerSingleton<IWaterSurfaceRepository>(
   'WaterSurfaceCountryAnnualRepository',
   WaterSurfaceCountryAnnualRepository
+)
+
+container.registerSingleton<IHumanMercuryRepository>(
+  'HumanMercuryRepository',
+  HumanMercuryRepository
+)
+
+container.registerSingleton<IFishMercuryRepository>(
+  'FishMercuryRepository',
+  FishMercuryRepository
 )
