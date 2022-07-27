@@ -1,13 +1,25 @@
+import { FishMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/FishMercuryRepositoryApi'
+import { HumanMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/HumanMercuryRepositoryApi'
+import { IFishMercuryRepositoryApi } from '@modules/mercury/api/repositories/IFishMercuryRepositoryApi'
+import { IHumanMercuryRepositoryApi } from '@modules/mercury/api/repositories/IHumanMercuryRepositoryApi'
+import { FishMercuryRepository } from '@modules/mercury/collector/infrastructure/repositories/FishMercuryRepository'
+import { HumanMercuryRepository } from '@modules/mercury/collector/infrastructure/repositories/HumanMercuryRepository'
+import { IFishMercuryRepository } from '@modules/mercury/collector/repositories/IFishMercuryRepository'
+import { IHumanMercuryRepository } from '@modules/mercury/collector/repositories/IHumanMercuryRepository'
+import { IllegalMiningRepository } from '@modules/mining/collector/infrastructure/repositories/IllegalMiningRepository'
+import { MiningMineRepository } from '@modules/mining/collector/infrastructure/repositories/MiningMineRepository'
+import { IIllegalMiningRepository } from '@modules/mining/collector/repositories/IIllegalMiningRepository'
+import { IMiningMineRepository } from '@modules/mining/collector/repositories/IMiningMineRepository'
+import { OilFieldRepository } from '@modules/oil/collector/infrastructure/repositories/OilFieldRepository'
+import { IOilFieldRepository } from '@modules/oil/collector/repositories/IOilFieldRepository'
+import { DeforestationRepository } from '@modules/soil/collector/infrastructure/repositories/DeforestationRepository'
+import { IDeforestationRepository } from '@modules/soil/collector/repositories/IDeforestationRepository'
 import { AmazonCityRepository } from '@modules/territory/infrastructure/typeorm/repositories/AmazonCityRepository'
 import { AmazonCountryRepository } from '@modules/territory/infrastructure/typeorm/repositories/AmazonCountryRepository'
 import { AmazonStateRepository } from '@modules/territory/infrastructure/typeorm/repositories/AmazonStateRepository'
 import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCityRepository'
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
-import { FishMercuryRepository } from '@modules/waterResources/collector/infrastructure/repositories/FishMercuryRepository'
-import { HumanMercuryRepository } from '@modules/waterResources/collector/infrastructure/repositories/HumanMercuryRepository'
-import { IFishMercuryRepository } from '@modules/waterResources/collector/repositories/IFishMercuryRepository'
-import { IHumanMercuryRepository } from '@modules/waterResources/collector/repositories/IHumanMercuryRepository'
 import { WaterSurfaceCityAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCityAnnualRepository'
 import { WaterSurfaceCountryAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCountryAnnualRepository'
 import { WaterSurfaceStateAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceStateAnnualRepository'
@@ -52,4 +64,34 @@ container.registerSingleton<IHumanMercuryRepository>(
 container.registerSingleton<IFishMercuryRepository>(
   'FishMercuryRepository',
   FishMercuryRepository
+)
+
+container.registerSingleton<IHumanMercuryRepositoryApi>(
+  'HumanMercuryRepositoryApi',
+  HumanMercuryRepositoryApi
+)
+
+container.registerSingleton<IFishMercuryRepositoryApi>(
+  'FishMercuryRepositoryApi',
+  FishMercuryRepositoryApi
+)
+
+container.registerSingleton<IIllegalMiningRepository>(
+  'IllegalMiningRepository',
+  IllegalMiningRepository
+)
+
+container.registerSingleton<IOilFieldRepository>(
+  'OilFieldRepository',
+  OilFieldRepository
+)
+
+container.registerSingleton<IMiningMineRepository>(
+  'MiningMineRepository',
+  MiningMineRepository
+)
+
+container.registerSingleton<IDeforestationRepository>(
+  'DeforestationRepository',
+  DeforestationRepository
 )
