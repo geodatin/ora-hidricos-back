@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infrastructure/http/server.ts",
+    "dev": "DEBUG=database NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infrastructure/http/server.ts",
     "typeorm": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "test": "jest --detectOpenHandles --runInBand",
     "test:watch": "NODE_ENV=test jest --watch --detectOpenHandles",
-    "collect": "DEBUG=collector NODE_ENV=development ts-node -r tsconfig-paths/register src/shared/seed/index.ts"
+    "collect": "DEBUG=* NODE_ENV=development ts-node -r tsconfig-paths/register src/shared/seed/index.ts"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.2",
