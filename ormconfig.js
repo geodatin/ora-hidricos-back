@@ -7,8 +7,7 @@ const baseConfig = {
   database: process.env.DB_NAME,
   schema: process.env.SCHEMA,
   synchronize: false,
-  logging:
-    process.env.DEBUG.includes('database') || process.env.DEBUG.includes('*'),
+  logging: true,
   entities: ['./src/modules/**/models/*.ts'],
   migrations: ['./src/shared/infrastructure/database/migrations/*.ts'],
   cli: {
