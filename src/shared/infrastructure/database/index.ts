@@ -5,5 +5,5 @@ import { databaseLog } from '@shared/utils/log'
 
 env.config()
 createConnection().then((connection) => {
-  databaseLog(connection)
+  databaseLog('Database connection established')
 })
