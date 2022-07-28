@@ -13,6 +13,90 @@
             "url": "/api"
         }
     ],
+    "components": {
+        "schemas": {
+            "geojson": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "features": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "geometry": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "coordinates": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "properties": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "publicationYear": {
+                                            "type": "number"
+                                        },
+                                        "study": {
+                                            "type": "string"
+                                        },
+                                        "author": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "type": "string"
+                                        },
+                                        "sampleNumber": {
+                                            "type": "number"
+                                        },
+                                        "hgMin": {
+                                            "type": "number"
+                                        },
+                                        "HgMax": {
+                                            "type": "number"
+                                        },
+                                        "hgMean": {
+                                            "type": "number"
+                                        },
+                                        "hgMedian": {
+                                            "type": "number"
+                                        },
+                                        "collectionYear": {
+                                            "type": "string"
+                                        },
+                                        "community": {
+                                            "type": "string"
+                                        },
+                                        "measurementUnit": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "paths": {
         "/territory/{name}": {
             "get": {
@@ -354,6 +438,58 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mercury/{type}/points": {
+            "get": {
+                "tags": [
+                    "Mercury"
+                ],
+                "description": "Get points of occurrences for mercury contamination",
+                "summary": "Points of mercury contamination",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Human or Fish contamination",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "human",
+                                "fish"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/geojson"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
                                         }
                                     }
                                 }
