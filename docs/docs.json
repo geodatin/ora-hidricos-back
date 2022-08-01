@@ -635,7 +635,7 @@
                 "summary": "Centers of oil fields",
                 "parameters": [
                     {
-                        "name": "type",
+                        "name": "code",
                         "in": "query",
                         "description": "Code for the specified point",
                         "required": false,
@@ -699,7 +699,7 @@
                 "summary": "Centers of illegal mining areas",
                 "parameters": [
                     {
-                        "name": "type",
+                        "name": "code",
                         "in": "query",
                         "description": "Code for the specified point",
                         "required": false,
