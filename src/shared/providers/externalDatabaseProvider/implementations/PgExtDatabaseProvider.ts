@@ -172,14 +172,16 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
     return rows
   }
 
-  async getWaterwayInfo(): Promise<ICreateWaterwayRecord[]> {
+  async getWaterwayInfo(size: number): Promise<ICreateWaterwayRecord[]> {
     const pool = this.connect()
     const { rows } = await pool.query(
       `SELECT 
       ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
         nombre as name,
         pais as country
-      FROM produto_3."TRA_Hidrovias_BHA_OTCA_2021_L"`
+      FROM produto_3."TRA_Hidrovias_BHA_OTCA_2021_L" offset ${
+        size - 1
+      } limit ${size}`
     )
     await pool.end()
     return rows
