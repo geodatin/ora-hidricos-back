@@ -13,5 +13,5 @@ export interface IExternalDatabaseProvider {
   getOilFieldInfo(): Promise<ICreateOilFieldRecord[]>
   getMiningMineInfo(): Promise<ICreateMiningMineRecord[]>
   getDeforestationInfo(): Promise<ICreateDeforestationRecord[]>
-  getWaterwayInfo(): Promise<ICreateWaterwayRecord[]>
+  getWaterwayInfo(size: number): Promise<ICreateWaterwayRecord[]>
 }
