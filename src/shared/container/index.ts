@@ -6,6 +6,8 @@ import { FishMercuryRepository } from '@modules/mercury/collector/infrastructure
 import { HumanMercuryRepository } from '@modules/mercury/collector/infrastructure/repositories/HumanMercuryRepository'
 import { IFishMercuryRepository } from '@modules/mercury/collector/repositories/IFishMercuryRepository'
 import { IHumanMercuryRepository } from '@modules/mercury/collector/repositories/IHumanMercuryRepository'
+import { IllegalMiningRepositoryApi } from '@modules/mining/api/infrastructure/repositories/IllegalMiningRepositoryApi'
+import { IIllegalMiningRepositoryApi } from '@modules/mining/api/repositories/IIllegalMiningRepositoryApi'
 import { IllegalMiningRepository } from '@modules/mining/collector/infrastructure/repositories/IllegalMiningRepository'
 import { MiningMineRepository } from '@modules/mining/collector/infrastructure/repositories/MiningMineRepository'
 import { IIllegalMiningRepository } from '@modules/mining/collector/repositories/IIllegalMiningRepository'
@@ -108,4 +110,9 @@ container.registerSingleton<IWaterwayRepository>(
 container.registerSingleton<IOilFieldRepositoryApi>(
   'OilFieldRepositoryApi',
   OilFieldRepositoryApi
+)
+
+container.registerSingleton<IIllegalMiningRepositoryApi>(
+  'IllegalMiningRepositoryApi',
+  IllegalMiningRepositoryApi
 )
