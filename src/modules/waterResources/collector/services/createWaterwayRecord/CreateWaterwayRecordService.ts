@@ -15,9 +15,11 @@ export class CreateWaterwayRecordService {
   ) {}
 
   async execute() {
-    collectorLog('Inserting data for illegal mining info!')
-    const records = await this.externalDatabaseProvider.getWaterwayInfo()
-    collectorLog(records)
-    await this.WaterwayRepository.create(records)
+    collectorLog('Inserting data for waterways!')
+    for (let i = 1; i <= 38; i++) {
+      const records = await this.externalDatabaseProvider.getWaterwayInfo(i)
+      collectorLog(records)
+      await this.WaterwayRepository.create(records)
+    }
   }
 }
