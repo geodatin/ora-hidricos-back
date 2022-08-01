@@ -153,6 +153,74 @@
                         }
                     }
                 }
+            },
+            "geojson-illegal-mining": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "features": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "geometry": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "coordinates": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "properties": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "explorationMethod": {
+                                            "type": "string"
+                                        },
+                                        "substance": {
+                                            "type": "string"
+                                        },
+                                        "contamination": {
+                                            "type": "string"
+                                        },
+                                        "situationEnd": {
+                                            "type": "number"
+                                        },
+                                        "informationSurce": {
+                                            "type": "string"
+                                        },
+                                        "institution": {
+                                            "type": "string"
+                                        },
+                                        "link": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -583,6 +651,70 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/geojson-oil"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mining/illegal/points": {
+            "get": {
+                "tags": [
+                    "Mining"
+                ],
+                "description": "Get centers of illegal mining areas",
+                "summary": "Centers of illegal mining areas",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Code for the specified point",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/geojson-illegal-mining"
                                 }
                             }
                         }
