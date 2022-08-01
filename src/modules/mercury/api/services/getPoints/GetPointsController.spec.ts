@@ -17,12 +17,12 @@ describe('Get Mercury Points Controller', () => {
   it('should return the points for the fish mercury occurrence', async () => {
     const response = await request(app).get(`/api/mercury/fish/points`)
     expect(response.body).toHaveProperty('features')
-    expect(response.body).toHaveProperty('features')
+    expect(response.body).toHaveProperty('type')
   })
 
   it('should return the points for the human mercury occurrence', async () => {
     const response = await request(app).get(`/api/mercury/human/points`)
     expect(response.body).toHaveProperty('features')
-    expect(response.body).toHaveProperty('features')
+    expect(response.body).toHaveProperty('type')
   })
 })
