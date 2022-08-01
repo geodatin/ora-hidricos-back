@@ -10,6 +10,8 @@ import { IllegalMiningRepository } from '@modules/mining/collector/infrastructur
 import { MiningMineRepository } from '@modules/mining/collector/infrastructure/repositories/MiningMineRepository'
 import { IIllegalMiningRepository } from '@modules/mining/collector/repositories/IIllegalMiningRepository'
 import { IMiningMineRepository } from '@modules/mining/collector/repositories/IMiningMineRepository'
+import { OilFieldRepositoryApi } from '@modules/oil/api/infrastructure/repositories/OilFieldRepositoryApi'
+import { IOilFieldRepositoryApi } from '@modules/oil/api/repositories/IOilFieldRepositoryApi'
 import { OilFieldRepository } from '@modules/oil/collector/infrastructure/repositories/OilFieldRepository'
 import { IOilFieldRepository } from '@modules/oil/collector/repositories/IOilFieldRepository'
 import { DeforestationRepository } from '@modules/soil/collector/infrastructure/repositories/DeforestationRepository'
@@ -20,6 +22,8 @@ import { AmazonStateRepository } from '@modules/territory/infrastructure/typeorm
 import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCityRepository'
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
+import { WaterwayRepository } from '@modules/waterResources/collector/infrastructure/repositories/WaterwayRepository'
+import { IWaterwayRepository } from '@modules/waterResources/collector/repositories/IWaterwayRepository'
 import { WaterSurfaceCityAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCityAnnualRepository'
 import { WaterSurfaceCountryAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCountryAnnualRepository'
 import { WaterSurfaceStateAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceStateAnnualRepository'
@@ -94,4 +98,14 @@ container.registerSingleton<IMiningMineRepository>(
 container.registerSingleton<IDeforestationRepository>(
   'DeforestationRepository',
   DeforestationRepository
+)
+
+container.registerSingleton<IWaterwayRepository>(
+  'WaterwayRepository',
+  WaterwayRepository
+)
+
+container.registerSingleton<IOilFieldRepositoryApi>(
+  'OilFieldRepositoryApi',
+  OilFieldRepositoryApi
 )
