@@ -11,7 +11,10 @@ export class OilFieldRepositoryApi implements IOilFieldRepositoryApi {
     this.repository = getRepository(OilField)
   }
 
-  async getPoints({ code }: IGetOilFieldPointsDTO): Promise<OilField[]> {
+  async getPoints({
+    code,
+    countryCode,
+  }: IGetOilFieldPointsDTO): Promise<OilField[]> {
     const oilFieldsQuery = this.repository
       .createQueryBuilder('oil_field')
       .select('code', 'code')
@@ -31,6 +34,12 @@ export class OilFieldRepositoryApi implements IOilFieldRepositoryApi {
         'ST_AsGeoJSON(ST_Centroid(geometry))::json',
         'geometry'
       )
+
+      if (countryCode) {
+        oilFieldsQuery.where('country_code = :countryCode', {
+          countryCode,
+        })
+      }
     }
 
     const oilFields = await oilFieldsQuery.getRawMany()

@@ -28,6 +28,9 @@ export class OilField {
   @Column()
   institution: string
 
+  @Column({ name: 'country_code' })
+  countryCode: number
+
   constructor() {
     if (!this.code) {
       this.code = uuidv4()
