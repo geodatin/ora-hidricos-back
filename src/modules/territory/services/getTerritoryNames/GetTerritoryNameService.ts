@@ -3,6 +3,11 @@ import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazo
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
 import { inject, injectable } from 'tsyringe'
 
+interface IRequest {
+  name: string
+  type?: string
+}
+
 @injectable()
 export class GetTerritoryNameService {
   constructor(
@@ -14,13 +19,18 @@ export class GetTerritoryNameService {
     private amazonStateRepository: IAmazonStateRepository
   ) {}
 
-  async execute(name: string) {
-    const cityNames = await this.amazonCityRepository.getNames(name)
-    cityNames.map((city) => (city.type = 'city'))
+  async execute({ name, type }: IRequest) {
+    let cityNames = []
+    let stateNames = []
+    if (type === 'waterSurface') {
+      stateNames = await this.amazonStateRepository.getNames(name)
+      stateNames.map((state) => (state.type = 'state'))
+      cityNames = await this.amazonCityRepository.getNames(name)
+      cityNames.map((city) => (city.type = 'city'))
+    }
+
     const countryNames = await this.amazonCountryRepository.getNames(name)
     countryNames.map((country) => (country.type = 'country'))
-    const stateNames = await this.amazonStateRepository.getNames(name)
-    stateNames.map((state) => (state.type = 'state'))
 
     const allNames = cityNames.concat(stateNames).concat(countryNames)
 
