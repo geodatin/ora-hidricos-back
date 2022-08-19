@@ -49,6 +49,9 @@ export class FishMercury {
   @Column({ name: 'measurement_unit' })
   measurementUnit: string
 
+  @Column({ name: 'country_code' })
+  countryCode: number
+
   constructor() {
     if (!this.code) {
       this.code = uuidv4()

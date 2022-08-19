@@ -3,15 +3,13 @@ import { inject, injectable } from 'tsyringe'
 import { IFishMercuryRepositoryApi } from '../../repositories/IFishMercuryRepositoryApi'
 import { IHumanMercuryRepositoryApi } from '../../repositories/IHumanMercuryRepositoryApi'
 
-const geojson: any = require('geojson')
-
 interface IRequest {
   type: string
   countryCode?: number
 }
 
 @injectable()
-export class GetPointsService {
+export class GetTotalPublicationsService {
   constructor(
     @inject('FishMercuryRepositoryApi')
     private fishMercuryRepositoryApi: IFishMercuryRepositoryApi,
@@ -21,9 +19,8 @@ export class GetPointsService {
 
   async execute({ type, countryCode }: IRequest) {
     const repository = this.getRepository(type)
-    const points = await repository.getPoints({ countryCode })
-    const parsed = geojson.parse(points, { GeoJSON: 'location' })
-    return parsed
+    const count = await repository.getTotalPublications({ countryCode })
+    return count
   }
 
   private getRepository(

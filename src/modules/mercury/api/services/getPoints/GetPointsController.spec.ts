@@ -25,4 +25,20 @@ describe('Get Mercury Points Controller', () => {
     expect(response.body).toHaveProperty('features')
     expect(response.body).toHaveProperty('type')
   })
+
+  it('should return the points for the human mercury occurrence is a specific country', async () => {
+    const response = await request(app).get(`/api/mercury/human/points`).query({
+      countryCode: 9,
+    })
+    expect(response.body).toHaveProperty('features')
+    expect(response.body).toHaveProperty('type')
+  })
+
+  it('should return the points for the fish mercury occurrence is a specific country', async () => {
+    const response = await request(app).get(`/api/mercury/fish/points`).query({
+      countryCode: 9,
+    })
+    expect(response.body).toHaveProperty('features')
+    expect(response.body).toHaveProperty('type')
+  })
 })

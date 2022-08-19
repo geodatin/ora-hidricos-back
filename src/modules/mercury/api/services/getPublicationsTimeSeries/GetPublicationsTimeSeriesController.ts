@@ -1,17 +1,17 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-import { GetPointsService } from './GetPointsService'
+import { GetPublicationsTimeSeriesService } from './GetPublicationsTimeSeriesService'
 
-export class GetPointsController {
+export class GetPublicationsTimeSeriesController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { type } = request.params
     const { countryCode } = request.query
-    const getPointsService = container.resolve(GetPointsService)
-    const points = await getPointsService.execute({
+    const service = container.resolve(GetPublicationsTimeSeriesService)
+    const timeSeries = await service.execute({
       type,
       countryCode: countryCode ? Number(countryCode) : null,
     })
-    return response.json(points)
+    return response.json(timeSeries)
   }
 }
