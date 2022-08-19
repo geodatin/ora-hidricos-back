@@ -12,6 +12,7 @@ export class IllegalMiningRepositoryApi implements IIllegalMiningRepositoryApi {
   }
   async getPoints({
     code,
+    countryCode,
   }: IGetIllegalMiningPointsDTO): Promise<IllegalMining[]> {
     const illegalMiningQuery = this.repository
       .createQueryBuilder('illegal_mining')
@@ -35,6 +36,12 @@ export class IllegalMiningRepositoryApi implements IIllegalMiningRepositoryApi {
         'ST_AsGeoJSON(ST_Centroid(geometry))::json',
         'geometry'
       )
+
+      if (countryCode) {
+        illegalMiningQuery.where('country_code = :countryCode', {
+          countryCode,
+        })
+      }
     }
 
     const illegalMining = await illegalMiningQuery.getRawMany()

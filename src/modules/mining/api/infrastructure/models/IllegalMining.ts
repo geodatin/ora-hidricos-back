@@ -37,6 +37,9 @@ export class IllegalMining {
   @Column()
   name: string
 
+  @Column({ name: 'country_code' })
+  countryCode: number
+
   constructor() {
     if (!this.code) {
       this.code = uuidv4()
