@@ -239,6 +239,18 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Inform if the territory is for water surface",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "waterSurface"
+                            ]
+                        }
                     }
                 ],
                 "summary": "Search Territory",
@@ -594,6 +606,15 @@
                                 "fish"
                             ]
                         }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Human or Fish contamination",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
                     }
                 ],
                 "responses": {
@@ -603,6 +624,225 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/geojson-mercury"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mercury/{type}/publications/countries": {
+            "get": {
+                "tags": [
+                    "Mercury"
+                ],
+                "description": "Get publications of mercury contamination by country",
+                "summary": "publications by country",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Human or Fish contamination",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "human",
+                                "fish"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "country": {
+                                                "type": "string"
+                                            },
+                                            "countryCode": {
+                                                "type": "number"
+                                            },
+                                            "count": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mercury/{type}/publications/time-series": {
+            "get": {
+                "tags": [
+                    "Mercury"
+                ],
+                "description": "Get publications of mercury contamination by country",
+                "summary": "publications by country",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Human or Fish contamination",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "human",
+                                "fish"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Human or Fish contamination",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1998,
+                                                1999,
+                                                2000,
+                                                2003
+                                            ]
+                                        },
+                                        "y": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                1,
+                                                2,
+                                                8
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mercury/{type}/publications/total": {
+            "get": {
+                "tags": [
+                    "Mercury"
+                ],
+                "description": "Get total number of publications",
+                "summary": "Total publications",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Human or Fish contamination",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "human",
+                                "fish"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Human or Fish contamination",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
                                 }
                             }
                         }
