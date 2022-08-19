@@ -16,8 +16,8 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
       `SELECT 
         study,
         yearpub::integer as "publicationYear",
-        x as latitude,
-        y as longitude,
+        x as longitude,
+        y as latitude,
         author,
         title,
         agegrup as "ageGroup",
@@ -42,8 +42,8 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
       `SELECT 
         study,
         yearoub::integer as "publicationYear",
-        x as latitude,
-        y as longitude,
+        x as longitude,
+        y as latitude,
         author,
         title,
         state,
@@ -164,9 +164,9 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
         fid_bho_20::varchar as "idBho",
         nunivotto1::varchar as "watershedId",
         dn::varchar as year,
-        fid_venezu::varchar as "countryId",
-        'Venezuela' as country
-      FROM produto_3."ANT_Desmatamento_Cabeceiras_Venezuela_COBRAPE_2021_A"`
+        fid_surina::varchar as "countryId",
+        'Suriname' as country
+      FROM produto_3."ANT_Desmatamento_Cabeceiras_Suriname_COBRAPE_2021_A"`
     )
     await pool.end()
     return rows
