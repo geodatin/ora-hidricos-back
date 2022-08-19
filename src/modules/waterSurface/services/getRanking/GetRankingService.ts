@@ -105,7 +105,7 @@ export class GetRankingService {
       data.push(record.area)
       position.push(index + 1)
       if (record.code === code) {
-        focusPage = Math.ceil(index / pageSize)
+        focusPage = Math.ceil(index + 1 / pageSize)
       }
     }
 
