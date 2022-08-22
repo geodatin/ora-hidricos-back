@@ -19,7 +19,9 @@ export class GetPublicationsByCountryService {
 
   async execute({ type, countryCode }: IRequest) {
     const repository = this.getRepository(type)
-    const publicationsList = await repository.getPublicationsByCountry()
+    const publicationsList = await repository.getPublicationsByCountry({
+      countryCode,
+    })
     return publicationsList
   }
 

@@ -3,6 +3,7 @@ import { AmazonCountry } from '@modules/territory/infrastructure/typeorm/models/
 import { getRepository, Repository } from 'typeorm'
 
 import { IGetPointsDTO } from '../../dtos/IGetPointsDTO'
+import { IGetTotalPublicationsByCountryDTO } from '../../dtos/IGetPublicationsByCountryDTO'
 import { IGetPublicationsTimesSeriesDTO } from '../../dtos/IGetPublicationsTimeSeriesDTO'
 import { IGetTotalPublicationsDTO } from '../../dtos/IGetTotalPublicationsDTO'
 import { IFishMercuryRepositoryApi } from '../../repositories/IFishMercuryRepositoryApi'
@@ -58,14 +59,16 @@ export class FishMercuryRepositoryApi implements IFishMercuryRepositoryApi {
       .getRawMany()
   }
 
-  async getPublicationsByCountry(): Promise<
+  async getPublicationsByCountry({
+    countryCode,
+  }: IGetTotalPublicationsByCountryDTO): Promise<
     {
       count: number
       countryCode: number
       country: string
     }[]
   > {
-    const publicationsByCountry = await this.repository
+    const publicationsByCountryQuery = this.repository
       .createQueryBuilder('mercury')
       .select('country_code', 'countryCode')
       .addSelect('COUNT(1)', 'count')
@@ -78,8 +81,13 @@ export class FishMercuryRepositoryApi implements IFishMercuryRepositoryApi {
       .groupBy('country_code')
       .addGroupBy('countries.name')
       .orderBy('count')
-      .getRawMany()
 
-    return publicationsByCountry
+    if (countryCode) {
+      publicationsByCountryQuery.where('country_code = :countryCode', {
+        countryCode,
+      })
+    }
+
+    return publicationsByCountryQuery.getRawMany()
   }
 }

@@ -6,9 +6,11 @@ import { GetPublicationsByCountryService } from './GetPublicationsByCountryServi
 export class GetPublicationsByCountryController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { type } = request.params
+    const { countryCode } = request.query
     const service = container.resolve(GetPublicationsByCountryService)
     const timeSeries = await service.execute({
       type,
+      countryCode: countryCode ? Number(countryCode) : null,
     })
     return response.json(timeSeries)
   }
