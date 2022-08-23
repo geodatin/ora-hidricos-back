@@ -824,7 +824,7 @@
                     {
                         "name": "countryCode",
                         "in": "query",
-                        "description": "Human or Fish contamination",
+                        "description": "Country Code",
                         "required": false,
                         "schema": {
                             "type": "number"
@@ -985,6 +985,288 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mining/illegal/total/occurrences": {
+            "get": {
+                "tags": [
+                    "Mining"
+                ],
+                "description": "Get total illegal mining occurrences",
+                "summary": "Illegal mining occurrences",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Code for the specified country",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mining/illegal/total/time-series": {
+            "get": {
+                "tags": [
+                    "Mining"
+                ],
+                "description": "Get total illegal mining time series",
+                "summary": "Illegal mining time series",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Code for the specified country",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1998,
+                                                1999,
+                                                2000,
+                                                2003
+                                            ]
+                                        },
+                                        "y": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                1,
+                                                2,
+                                                8
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mining/illegal/ranking": {
+            "get": {
+                "description": "Return the ranking for the substances",
+                "tags": [
+                    "Mining"
+                ],
+                "summary": "Mining ranking",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
                                         }
                                     }
                                 }
