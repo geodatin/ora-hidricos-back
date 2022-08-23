@@ -1081,7 +1081,7 @@
                 }
             }
         },
-        "/mining/illegal/total/time-series": {
+        "/mining/illegal/time-series": {
             "get": {
                 "tags": [
                     "Mining"
