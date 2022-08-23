@@ -7,6 +7,7 @@ import { IIllegalMiningRepositoryApi } from '../../repositories/IIllegalMiningRe
 
 interface IRequest {
   code?: string
+  countryCode?: number
 }
 
 @injectable()
@@ -16,8 +17,11 @@ export class GetIllegalMiningPointsService {
     private illegalMiningRepositoryApi: IIllegalMiningRepositoryApi
   ) {}
 
-  async execute({ code }: IRequest) {
-    const points = await this.illegalMiningRepositoryApi.getPoints({ code })
+  async execute({ code, countryCode }: IRequest) {
+    const points = await this.illegalMiningRepositoryApi.getPoints({
+      code,
+      countryCode,
+    })
     if (points.length === 0) {
       throw new AppError('Informed code does not exist')
     }
