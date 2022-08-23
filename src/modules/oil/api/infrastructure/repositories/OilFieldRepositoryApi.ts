@@ -46,4 +46,17 @@ export class OilFieldRepositoryApi implements IOilFieldRepositoryApi {
 
     return oilFields
   }
+
+  async getTotal({ countryCode }: IGetOilFieldPointsDTO): Promise<number> {
+    let count = 0
+    let where = {}
+    if (countryCode) {
+      where = {
+        ...where,
+        countryCode,
+      }
+    }
+    count = await this.repository.count({ where })
+    return count
+  }
 }

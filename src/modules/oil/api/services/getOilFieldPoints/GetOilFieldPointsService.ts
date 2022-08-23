@@ -7,6 +7,7 @@ import { IOilFieldRepositoryApi } from '../../repositories/IOilFieldRepositoryAp
 
 interface IRequest {
   code: string
+  countryCode?: number
 }
 
 @injectable()
@@ -16,8 +17,11 @@ export class GetOilFieldPointsService {
     private oilFieldsRepositoryApi: IOilFieldRepositoryApi
   ) {}
 
-  async execute({ code }: IRequest) {
-    const points = await this.oilFieldsRepositoryApi.getPoints({ code })
+  async execute({ code, countryCode }: IRequest) {
+    const points = await this.oilFieldsRepositoryApi.getPoints({
+      code,
+      countryCode,
+    })
     if (points.length === 0) {
       throw new AppError('Informed code does not exist')
     }
