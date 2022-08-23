@@ -882,6 +882,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
                     }
                 ],
                 "responses": {
@@ -945,6 +954,15 @@
                         "required": false,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
                         }
                     }
                 ],
