@@ -59,4 +59,26 @@ export class OilFieldRepositoryApi implements IOilFieldRepositoryApi {
     count = await this.repository.count({ where })
     return count
   }
+
+  async getCompanyRanking({
+    countryCode,
+  }: IGetOilFieldPointsDTO): Promise<{ name: string; amount: number }[]> {
+    const getCompanyRankingQuery = this.repository
+      .createQueryBuilder('oil')
+      .select('oil.company', 'name')
+      .addSelect('COUNT(1)', 'amount')
+
+    if (countryCode) {
+      getCompanyRankingQuery.where('country_code = :countryCode', {
+        countryCode,
+      })
+    }
+
+    getCompanyRankingQuery
+      .andWhere('oil.company IS NOT NULL')
+      .groupBy('oil.company')
+      .orderBy('amount', 'DESC')
+
+    return await getCompanyRankingQuery.getRawMany()
+  }
 }
