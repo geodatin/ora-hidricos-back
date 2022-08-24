@@ -7,4 +7,7 @@ export interface IOilFieldRepositoryApi {
   getCompanyRanking(
     data: IGetOilFieldPointsDTO
   ): Promise<{ name: string; amount: number }[]>
+  getSituationAmount(
+    data: IGetOilFieldPointsDTO
+  ): Promise<{ situation: string; amount: number; type: string }[]>
 }

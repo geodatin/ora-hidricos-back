@@ -81,4 +81,29 @@ export class OilFieldRepositoryApi implements IOilFieldRepositoryApi {
 
     return await getCompanyRankingQuery.getRawMany()
   }
+
+  async getSituationAmount({
+    countryCode,
+  }: IGetOilFieldPointsDTO): Promise<
+    { situation: string; amount: number; type: string }[]
+  > {
+    const getSituationAmountQuery = this.repository
+      .createQueryBuilder('oil')
+      .select('oil.situation', 'situation')
+      .addSelect('COUNT(1)', 'amount')
+      .addSelect(`'oil'`, 'type')
+
+    if (countryCode) {
+      getSituationAmountQuery.where('country_code = :countryCode', {
+        countryCode,
+      })
+    }
+
+    getSituationAmountQuery
+      .andWhere('oil.situation IS NOT NULL')
+      .groupBy('oil.situation')
+      .orderBy('amount', 'DESC')
+
+    return await getSituationAmountQuery.getRawMany()
+  }
 }
