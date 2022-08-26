@@ -1579,6 +1579,113 @@
                     }
                 }
             }
+        },
+        "/mining/mine/tiles/{z}/{y}/{x}.mvt": {
+            "get": {
+                "description": "Return the tiles for the mining sites",
+                "tags": [
+                    "Mining"
+                ],
+                "summary": "Mining sites tiles",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "z",
+                        "in": "path",
+                        "description": "Zoom coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 6
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "description": "X Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 23
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "description": "Y Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 35
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/vnd.mapbox-vector-tile": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/waterway/tiles/{z}/{y}/{x}.mvt": {
+            "get": {
+                "description": "Return the tiles for the Waterways",
+                "tags": [
+                    "Mining"
+                ],
+                "summary": "Waterways tiles",
+                "parameters": [
+                    {
+                        "name": "z",
+                        "in": "path",
+                        "description": "Zoom coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 6
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "description": "X Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 23
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "description": "Y Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 35
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/vnd.mapbox-vector-tile": {}
+                        }
+                    }
+                }
+            }
         }
     }
 }
