@@ -7,7 +7,9 @@ import { HumanMercuryRepository } from '@modules/mercury/collector/infrastructur
 import { IFishMercuryRepository } from '@modules/mercury/collector/repositories/IFishMercuryRepository'
 import { IHumanMercuryRepository } from '@modules/mercury/collector/repositories/IHumanMercuryRepository'
 import { IllegalMiningRepositoryApi } from '@modules/mining/api/infrastructure/repositories/IllegalMiningRepositoryApi'
+import { MiningMineRepositoryApi } from '@modules/mining/api/infrastructure/repositories/MiningMineRepositoryApi'
 import { IIllegalMiningRepositoryApi } from '@modules/mining/api/repositories/IIllegalMiningRepositoryApi'
+import { IMiningMineRepositoryApi } from '@modules/mining/api/repositories/IMiningMineRepositoryApi'
 import { IllegalMiningRepository } from '@modules/mining/collector/infrastructure/repositories/IllegalMiningRepository'
 import { MiningMineRepository } from '@modules/mining/collector/infrastructure/repositories/MiningMineRepository'
 import { IIllegalMiningRepository } from '@modules/mining/collector/repositories/IIllegalMiningRepository'
@@ -24,6 +26,8 @@ import { AmazonStateRepository } from '@modules/territory/infrastructure/typeorm
 import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCityRepository'
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
+import { WaterwayRepositoryApi } from '@modules/waterResources/api/infrastructure/repositories/WaterwayRepository'
+import { IWaterwayRepositoryApi } from '@modules/waterResources/api/repositories/IWatewayRepositoryApi'
 import { WaterwayRepository } from '@modules/waterResources/collector/infrastructure/repositories/WaterwayRepository'
 import { IWaterwayRepository } from '@modules/waterResources/collector/repositories/IWaterwayRepository'
 import { WaterSurfaceCityAnnualRepository } from '@modules/waterSurface/infrastructure/typeorm/repositories/WaterSurfaceCityAnnualRepository'
@@ -115,4 +119,14 @@ container.registerSingleton<IOilFieldRepositoryApi>(
 container.registerSingleton<IIllegalMiningRepositoryApi>(
   'IllegalMiningRepositoryApi',
   IllegalMiningRepositoryApi
+)
+
+container.registerSingleton<IMiningMineRepositoryApi>(
+  'MiningMineRepositoryApi',
+  MiningMineRepositoryApi
+)
+
+container.registerSingleton<IWaterwayRepositoryApi>(
+  'WaterwayRepositoryApi',
+  WaterwayRepositoryApi
 )
