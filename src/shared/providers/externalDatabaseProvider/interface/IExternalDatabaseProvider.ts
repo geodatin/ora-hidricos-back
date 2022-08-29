@@ -3,6 +3,7 @@ import { ICreateHumanMercuryRecord } from '@modules/mercury/collector/dtos/ICrea
 import { ICreateIllegalMiningRecord } from '@modules/mining/collector/dtos/ICreateIllegalMiningRecord'
 import { ICreateMiningMineRecord } from '@modules/mining/collector/dtos/ICreateMiningMineRecord'
 import { ICreateOilFieldRecord } from '@modules/oil/collector/dtos/ICreateOilFieldRecord'
+import { OrganicPollution } from '@modules/pollution/infrastructure/models/OrganicPollution'
 import { ICreateDeforestationRecord } from '@modules/soil/collector/dtos/ICreateDeforestationRecord'
 import { ICreateWaterwayRecord } from '@modules/waterResources/collector/dtos/ICreateWaterwayRecord'
 
@@ -14,4 +15,5 @@ export interface IExternalDatabaseProvider {
   getMiningMineInfo(): Promise<ICreateMiningMineRecord[]>
   getDeforestationInfo(): Promise<ICreateDeforestationRecord[]>
   getWaterwayInfo(size: number): Promise<ICreateWaterwayRecord[]>
+  getOrganicPollutionInfo(size: number): Promise<OrganicPollution[]>
 }
