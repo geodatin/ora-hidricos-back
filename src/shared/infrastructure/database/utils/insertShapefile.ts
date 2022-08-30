@@ -11,8 +11,11 @@ export async function insertShapefile(
   schema = 'hydric',
   encoding = 'UTF8'
 ) {
+  console.log(
+    `shp2pgsql -I -s ${srid}:4326 -W "${encoding}" ${shapefilePath} ${schema}.${tableName} | PGPASSWORD=${process.env.DB_PASSWORD} psql -q -d ${process.env.DB_NAME} -U ${process.env.DB_USER} -h ${process.env.DB_HOST}`
+  )
   const { stderr: error } = await execPromise(
-    `shp2pgsql -I -s ${srid}:4326 -W "${encoding}" ${shapefilePath} ${schema}.${tableName} | PGPASSWORD=${process.env.DB_PASSWORD} psql -q -d ${process.env.DB_NAME} -U ${process.env.DB_USERNAME} -h ${process.env.DB_HOST}`
+    `shp2pgsql -I -s ${srid}:4326 -W "${encoding}" ${shapefilePath} ${schema}.${tableName} | PGPASSWORD=${process.env.DB_PASSWORD} psql -q -d ${process.env.DB_NAME} -U ${process.env.DB_USER} -h ${process.env.DB_HOST}`
   )
   if (error) {
     console.log(error)
