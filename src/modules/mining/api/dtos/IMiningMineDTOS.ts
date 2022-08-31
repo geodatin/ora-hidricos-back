@@ -1,6 +1,6 @@
 export interface IGetMiningMinePointsDTO {
   countryCode?: number
-  tile: {
+  tile?: {
     z: number
     x: number
     y: number

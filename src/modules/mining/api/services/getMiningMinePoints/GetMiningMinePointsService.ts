@@ -20,10 +20,11 @@ export class GetMiningMinePointsService {
   ) {}
 
   async execute({ tile, countryCode }: IRequest) {
-    const { mvt } = await this.miningMineRepositoryApi.getPoints({
+    const { mvt } = await this.miningMineRepositoryApi.getPointsAsMvt({
       tile,
       countryCode,
     })
+
     return mvt
   }
 }

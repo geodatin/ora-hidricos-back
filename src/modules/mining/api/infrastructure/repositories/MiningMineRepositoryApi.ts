@@ -12,8 +12,31 @@ export class MiningMineRepositoryApi implements IMiningMineRepositoryApi {
   constructor() {
     this.repository = getRepository(MiningMine)
   }
+  async getPointsAsJson({
+    countryCode,
+  }: IGetMiningMinePointsDTO): Promise<MiningMine[]> {
+    const miningMineQuery = this.repository
+      .createQueryBuilder('illegal_mining')
+      .select('code', 'code')
+      .addSelect('name', 'name')
+      .addSelect('company', 'company')
+      .addSelect('situation', 'situation')
+      .addSelect('source', 'source')
+      .addSelect('institution', 'institution')
+      .addSelect('ST_AsGeoJSON(geometry)::json', 'geometry')
 
-  async getPoints({
+    if (countryCode) {
+      miningMineQuery.where('country_code = :countryCode', {
+        countryCode,
+      })
+    }
+
+    const miningMine = await miningMineQuery.getRawMany()
+
+    return miningMine
+  }
+
+  async getPointsAsMvt({
     countryCode,
     tile,
   }: IGetMiningMinePointsDTO): Promise<{ mvt: Buffer }> {

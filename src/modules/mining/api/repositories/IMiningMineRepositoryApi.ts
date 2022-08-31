@@ -1,5 +1,7 @@
 import { IGetMiningMinePointsDTO } from '../dtos/IMiningMineDTOS'
+import { MiningMine } from '../infrastructure/models/MiningMine'
 
 export interface IMiningMineRepositoryApi {
-  getPoints(data: IGetMiningMinePointsDTO): Promise<{ mvt: Buffer }>
+  getPointsAsMvt(data: IGetMiningMinePointsDTO): Promise<{ mvt: Buffer }>
+  getPointsAsJson(data: IGetMiningMinePointsDTO): Promise<MiningMine[]>
 }
