@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 @Entity({ name: 'oil_field', schema: 'hydric' })
 export class OilField {
   @PrimaryColumn()
-  code: number
+  code: string
 
   @Column({ type: 'geometry', srid: 4326 })
   geometry: MultiPolygon
