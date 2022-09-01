@@ -75,6 +75,10 @@ export class AnaWaterUsersCollector {
         currentName: 'geom',
         newName: 'geometry',
       },
+      {
+        currentName: 'ing_nm_mun',
+        newName: 'city_name',
+      },
     ]
     await renameColumns(columnsToRename, 'hydric', 'water_user_union')
     await renameColumns(columnsToRename, 'hydric', 'water_user_state')
