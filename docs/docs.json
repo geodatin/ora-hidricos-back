@@ -221,6 +221,80 @@
                         }
                     }
                 }
+            },
+            "geojson-water-users": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "features": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "geometry": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "coordinates": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "properties": {
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "type": "number"
+                                        },
+                                        "bestowalType": {
+                                            "type": "string"
+                                        },
+                                        "interferenceType": {
+                                            "type": "string"
+                                        },
+                                        "orgName": {
+                                            "type": "string"
+                                        },
+                                        "bestowalSituation": {
+                                            "type": "string"
+                                        },
+                                        "interferenceSubtype": {
+                                            "type": "string"
+                                        },
+                                        "waterBodyName": {
+                                            "type": "number"
+                                        },
+                                        "goal": {
+                                            "type": "string"
+                                        },
+                                        "validDate": {
+                                            "type": "string"
+                                        },
+                                        "avgFlow": {
+                                            "type": "number"
+                                        },
+                                        "maxFlow": {
+                                            "type": "number"
+                                        },
+                                        "volume": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -1642,7 +1716,7 @@
             "get": {
                 "description": "Return the tiles for the Waterways",
                 "tags": [
-                    "Mining"
+                    "Water Surface"
                 ],
                 "summary": "Waterways tiles",
                 "parameters": [
@@ -1682,6 +1756,799 @@
                         "description": "Success",
                         "content": {
                             "application/vnd.mapbox-vector-tile": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/soil/points/total": {
+            "get": {
+                "tags": [
+                    "Soil"
+                ],
+                "description": "Get total organic pollution occurrences",
+                "summary": "Organic pollution occurrences",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Code for the specified country",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pollution/total": {
+            "get": {
+                "tags": [
+                    "Pollution"
+                ],
+                "description": "Get total occurrences of pollution",
+                "summary": "Get total occurrences of pollution",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pollution/situation": {
+            "get": {
+                "tags": [
+                    "Pollution"
+                ],
+                "description": "Get pollution situation map",
+                "summary": "Get pollution situation map",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Code for the specified country",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "situation": {
+                                                "type": "string"
+                                            },
+                                            "amount": {
+                                                "type": "number"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pollution/tiles/{z}/{y}/{x}.mvt": {
+            "get": {
+                "description": "Return the tiles for the pollution fields",
+                "tags": [
+                    "Pollution"
+                ],
+                "summary": "Mining sites tiles",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country Code",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "z",
+                        "in": "path",
+                        "description": "Zoom coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 6
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "description": "X Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 23
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "description": "Y Coordinate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 35
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/vnd.mapbox-vector-tile": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/waterUsers/{territoryType}/points": {
+            "get": {
+                "tags": [
+                    "Water Users"
+                ],
+                "description": "Get total organic pollution occurrences",
+                "summary": "Organic pollution occurrences",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "union",
+                                "state"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/geojson-water-users"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterUsers/{territoryType}/total": {
+            "get": {
+                "tags": [
+                    "Water Users"
+                ],
+                "description": "Get total number of occurrences",
+                "summary": "Get total number of occurrences",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "union",
+                                "state"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterUsers/ranking/bestowal/{territoryType}/{rankingVariation}": {
+            "get": {
+                "description": "Return the ranking for the bestowal",
+                "tags": [
+                    "Water Users"
+                ],
+                "summary": "Bestowal ranking",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "union",
+                                "state"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "rankingVariation",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "type",
+                                "situation"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterUsers/ranking/interference/{territoryType}": {
+            "get": {
+                "description": "Return the ranking for the interference type",
+                "tags": [
+                    "Water Users"
+                ],
+                "summary": "Interference ranking",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "union",
+                                "state"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/waterUsers/ranking/cities/{territoryType}": {
+            "get": {
+                "description": "Return the ranking for the cities on the territory",
+                "tags": [
+                    "Water Users"
+                ],
+                "summary": "Cities ranking",
+                "parameters": [
+                    {
+                        "name": "territoryType",
+                        "in": "path",
+                        "description": "Territory type to get the points",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "union",
+                                "state"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
