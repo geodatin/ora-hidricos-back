@@ -1,3 +1,6 @@
+import { WaterUserStateRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserStateRepository'
+import { WaterUserUnionRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserUnionRepository'
+import { IWaterUserRepository } from '@modules/anaWaterUsers/repositories/IWaterUserRepository'
 import { FishMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/FishMercuryRepositoryApi'
 import { HumanMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/HumanMercuryRepositoryApi'
 import { IFishMercuryRepositoryApi } from '@modules/mercury/api/repositories/IFishMercuryRepositoryApi'
@@ -18,6 +21,8 @@ import { OilFieldRepositoryApi } from '@modules/oil/api/infrastructure/repositor
 import { IOilFieldRepositoryApi } from '@modules/oil/api/repositories/IOilFieldRepositoryApi'
 import { OilFieldRepository } from '@modules/oil/collector/infrastructure/repositories/OilFieldRepository'
 import { IOilFieldRepository } from '@modules/oil/collector/repositories/IOilFieldRepository'
+import { OrganicPollutionRepository } from '@modules/pollution/infrastructure/repositories/OrganicPollutionRepository'
+import { IOrganicPollutionRepository } from '@modules/pollution/repositories/IOrganicPollutionRepository'
 import { DeforestationRepository } from '@modules/soil/collector/infrastructure/repositories/DeforestationRepository'
 import { IDeforestationRepository } from '@modules/soil/collector/repositories/IDeforestationRepository'
 import { AmazonCityRepository } from '@modules/territory/infrastructure/typeorm/repositories/AmazonCityRepository'
@@ -129,4 +134,19 @@ container.registerSingleton<IMiningMineRepositoryApi>(
 container.registerSingleton<IWaterwayRepositoryApi>(
   'WaterwayRepositoryApi',
   WaterwayRepositoryApi
+)
+
+container.registerSingleton<IOrganicPollutionRepository>(
+  'OrganicPollutionRepository',
+  OrganicPollutionRepository
+)
+
+container.registerSingleton<IWaterUserRepository>(
+  'WaterUserStateRepository',
+  WaterUserStateRepository
+)
+
+container.registerSingleton<IWaterUserRepository>(
+  'WaterUserUnionRepository',
+  WaterUserUnionRepository
 )
