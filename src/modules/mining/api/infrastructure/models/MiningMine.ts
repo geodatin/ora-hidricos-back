@@ -31,6 +31,9 @@ export class MiningMine {
   @Column()
   institution: string
 
+  @Column({ name: 'country_code' })
+  countryCode: string
+
   constructor() {
     if (!this.code) {
       this.code = uuidv4()

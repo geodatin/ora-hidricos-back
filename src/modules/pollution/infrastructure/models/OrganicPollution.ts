@@ -58,6 +58,9 @@ export class OrganicPollution {
   @Column()
   qdil40m: number
 
+  @Column({ name: 'countryCode' })
+  countryCode: number
+
   constructor() {
     if (!this.code) {
       this.code = uuidv4()
