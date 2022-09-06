@@ -2554,7 +2554,7 @@
                 }
             }
         },
-        "/mining/mine/points": {
+        "/mining/mine/total/occurrences": {
             "get": {
                 "tags": [
                     "Mining"
