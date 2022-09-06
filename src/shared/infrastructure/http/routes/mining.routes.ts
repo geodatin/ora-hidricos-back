@@ -38,8 +38,6 @@ miningRoutes.get(
 )
 miningRoutes.get('/illegal/ranking', getSubstanceRankingController.handle)
 
-miningRoutes.get('/mine/points', getMiningMinePointsController.handle)
-
 miningRoutes.get(
   '/mine/tiles/:z/:x/:y.:format',
   checkTile,
