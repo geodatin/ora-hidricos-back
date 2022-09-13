@@ -15,6 +15,27 @@ export class WaterwayRepositoryApi implements IWaterwayRepositoryApi {
   constructor() {
     this.repository = getRepository(Waterway)
   }
+  async getShapeAsGeoJson(): Promise<Waterway[]> {
+    const shape = await this.repository.query(`
+    SELECT json_build_object(
+      'type', 'FeatureCollection',
+      'features', json_agg(
+          json_build_object(
+              'type',       'Feature',
+              'geometry',   ST_AsGeoJSON(geometry)::json,
+              'properties', json_build_object(
+                  'code', code,
+                  'country', country,
+                  'name', name
+              )
+          )
+      )
+  ) as shape
+  FROM hydric.waterway limit 1;
+    `)
+    return shape
+  }
+
   async getShapeAsMvt({
     tile,
   }: IGetShapeAsMvtRequestDTO): Promise<IGetShapeAsMvtResponseDTO> {
