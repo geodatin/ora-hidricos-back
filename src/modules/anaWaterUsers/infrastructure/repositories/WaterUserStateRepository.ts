@@ -2,7 +2,7 @@ import {
   IRanking,
   IWaterUserRepository,
 } from '@modules/anaWaterUsers/repositories/IWaterUserRepository'
-import { Repository, getRepository } from 'typeorm'
+import { Repository, getRepository, getManager, Not, IsNull } from 'typeorm'
 
 import { WaterUserState } from '../models/WaterUserState'
 import { WaterUserUnion } from '../models/WaterUserUnion'
@@ -15,10 +15,11 @@ export class WaterUserStateRepository implements IWaterUserRepository {
   }
 
   async getGoalRanking(): Promise<IRanking[]> {
-    const getRankingQuery = this.repository
-      .createQueryBuilder('water_user')
+    const getRankingQuery = getManager()
+      .createQueryBuilder()
       .select(`water_user.goal`, 'name')
       .addSelect('COUNT(1)', 'amount')
+      .from('water_user_state', 'water_user')
       .where(`water_user.goal IS NOT NULL`)
       .groupBy(`water_user.goal`)
       .orderBy('amount', 'DESC')
@@ -70,7 +71,11 @@ export class WaterUserStateRepository implements IWaterUserRepository {
   }
 
   async getPoints(): Promise<WaterUserUnion[] | WaterUserState[]> {
-    const waterUsers = await this.repository.find()
+    const waterUsers = await this.repository.find({
+      where: {
+        validDate: Not(IsNull()),
+      },
+    })
     return waterUsers
   }
 }
