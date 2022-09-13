@@ -1761,6 +1761,33 @@
                 }
             }
         },
+        "/waterway/tiles/image": {
+            "get": {
+                "description": "Return the tiles for the Waterways",
+                "tags": [
+                    "Water Surface"
+                ],
+                "summary": "Waterways tiles",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/soil/points/total": {
             "get": {
                 "tags": [
