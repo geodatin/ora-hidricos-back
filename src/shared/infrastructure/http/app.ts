@@ -6,12 +6,15 @@ import swagger from 'swagger-ui-express'
 import '@shared/infrastructure/database/utils/formatPgResponse'
 import '../database'
 import '../../container'
+import { initializeEarthEngine } from '@shared/earthengine'
 import { checkError } from '@shared/errors/checkError'
 
 import docs from '../../../../docs/docs.json'
 import { routes } from './routes/index.routes'
 
 const app = express()
+
+initializeEarthEngine()
 
 app.use(
   '/api/docs',
