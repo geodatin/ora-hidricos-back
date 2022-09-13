@@ -5,3 +5,4 @@ assets
 tmp/*
 !tmp/.gitkeep
 coverage
+.private-key.json
