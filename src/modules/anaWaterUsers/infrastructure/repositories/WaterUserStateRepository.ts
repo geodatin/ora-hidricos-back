@@ -75,6 +75,7 @@ export class WaterUserStateRepository implements IWaterUserRepository {
       where: {
         validDate: Not(IsNull()),
       },
+      take: 20000,
     })
     return waterUsers
   }
