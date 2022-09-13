@@ -40,7 +40,6 @@ export class GetPointsService {
         if (point.validDate) {
           const date = moment(formatDate(point.validDate))
           if (date.isSameOrAfter(moment())) {
-            console.log(point)
             pointsToBeTransformed.push(point)
           }
         }
