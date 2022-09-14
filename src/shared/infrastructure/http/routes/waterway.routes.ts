@@ -1,3 +1,4 @@
+import { GetCountriesRankingController } from '@modules/waterResources/api/services/getCountriesRanking /GetCountriesRankingController'
 import { GetPropertiesController } from '@modules/waterResources/api/services/getProperties/GetPropertiesController'
 import { GetShapeAsMvtController } from '@modules/waterResources/api/services/getShapeAsMvt/GetShapeAsMvtController'
 import { GetShapeAsTilesController } from '@modules/waterResources/api/services/getShapeAsTiles/GetShapeAsGeoJsonController'
@@ -12,6 +13,7 @@ const getShapeAsMvtController = new GetShapeAsMvtController()
 const getShapeAsTilesController = new GetShapeAsTilesController()
 const getPropertiesController = new GetPropertiesController()
 const getTotalController = new GetTotalController()
+const getCountriesRankingController = new GetCountriesRankingController()
 
 waterwayRoutes.get(
   '/tiles/:z/:x/:y.:format',
@@ -24,3 +26,4 @@ waterwayRoutes.get(
   getPropertiesController.handle
 )
 waterwayRoutes.get('/total', getTotalController.handle)
+waterwayRoutes.get('/country/ranking', getCountriesRankingController.handle)
