@@ -1788,6 +1788,60 @@
                 }
             }
         },
+        "/waterway/properties/tiles/{long}/{lat}": {
+            "get": {
+                "description": "Return the tiles for the Waterways",
+                "tags": [
+                    "Water Surface"
+                ],
+                "summary": "Waterways tiles properties",
+                "parameters": [
+                    {
+                        "name": "long",
+                        "in": "path",
+                        "description": "Longitude",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 6
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "path",
+                        "description": "Latitude",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 23
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/soil/points/total": {
             "get": {
                 "tags": [
