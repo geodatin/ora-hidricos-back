@@ -42,10 +42,10 @@ export class WaterUserStateRepository implements IWaterUserRepository {
   async getInterferenceRanking(): Promise<IRanking[]> {
     const getRankingQuery = this.repository
       .createQueryBuilder('water_user')
-      .select(`water_user.interference_type`, 'name')
+      .select(`water_user.interference_subtype`, 'name')
       .addSelect('COUNT(1)', 'amount')
-      .where(`water_user.interference_type IS NOT NULL`)
-      .groupBy(`water_user.interference_type`)
+      .where(`water_user.interference_subtype IS NOT NULL`)
+      .groupBy(`water_user.interference_subtype`)
       .orderBy('amount', 'DESC')
 
     return await getRankingQuery.getRawMany()
