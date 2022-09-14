@@ -6,7 +6,10 @@ import {
   IGetShapeAsMvtRequestDTO,
   IGetShapeAsMvtResponseDTO,
 } from '../../dtos/IGetShapeAsMvtDTO'
-import { IWaterwayRepositoryApi } from '../../repositories/IWatewayRepositoryApi'
+import {
+  IRanking,
+  IWaterwayRepositoryApi,
+} from '../../repositories/IWatewayRepositoryApi'
 import { Waterway } from '../models/Waterway'
 
 export class WaterwayRepositoryApi implements IWaterwayRepositoryApi {
@@ -15,6 +18,7 @@ export class WaterwayRepositoryApi implements IWaterwayRepositoryApi {
   constructor() {
     this.repository = getRepository(Waterway)
   }
+
   async getTotal(): Promise<number> {
     const total = await this.repository.count()
     return total
@@ -63,5 +67,17 @@ export class WaterwayRepositoryApi implements IWaterwayRepositoryApi {
     SELECT ST_AsMVT(mvtgeom.*) as mvt FROM mvtgeom 
     `)
     return mvt
+  }
+
+  async getCountriesRanking(): Promise<IRanking[]> {
+    const getRankingQuery = this.repository
+      .createQueryBuilder('waterway')
+      .select(`waterway.country`, 'name')
+      .addSelect('COUNT(1)', 'amount')
+      .where(`waterway.country IS NOT NULL`)
+      .groupBy(`waterway.country`)
+      .orderBy('amount', 'DESC')
+
+    return await getRankingQuery.getRawMany()
   }
 }
