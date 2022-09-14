@@ -15,6 +15,10 @@ export class WaterwayRepositoryApi implements IWaterwayRepositoryApi {
   constructor() {
     this.repository = getRepository(Waterway)
   }
+  async getTotal(): Promise<number> {
+    const total = await this.repository.count()
+    return total
+  }
   async getShapeAsGeoJson(): Promise<Waterway[]> {
     const shape = await this.repository.query(`
     SELECT json_build_object(

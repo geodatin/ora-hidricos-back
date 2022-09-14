@@ -16,7 +16,6 @@ export class WaterwayRepository implements IWaterwayRepository {
       const newRecord = new Waterway()
       Object.assign(newRecord, {
         ...record,
-        location: () => `ST_GeomFromGeoJSON('${record.geometry}')`,
       })
       return newRecord
     })

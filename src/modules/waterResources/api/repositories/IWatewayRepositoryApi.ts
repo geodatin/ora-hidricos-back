@@ -9,4 +9,5 @@ export interface IWaterwayRepositoryApi {
     data: IGetShapeAsMvtRequestDTO
   ): Promise<IGetShapeAsMvtResponseDTO>
   getShapeAsGeoJson(): Promise<Waterway[]>
+  getTotal(): Promise<number>
 }
