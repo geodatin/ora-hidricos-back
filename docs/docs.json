@@ -1802,8 +1802,8 @@
                         "description": "Longitude",
                         "required": true,
                         "schema": {
-                            "type": "integer",
-                            "example": 6
+                            "type": "number",
+                            "example": -58.76284
                         }
                     },
                     {
@@ -1812,8 +1812,8 @@
                         "description": "Latitude",
                         "required": true,
                         "schema": {
-                            "type": "integer",
-                            "example": 23
+                            "type": "number",
+                            "example": -3.353911
                         }
                     }
                 ],
