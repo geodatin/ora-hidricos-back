@@ -16,9 +16,11 @@ const init = function () {
   )
 }
 
-export function initializeEarthEngine() {
+function initializeEarthEngine() {
   // Authenticate using a service account.
   ee.data.authenticateViaPrivateKey(privateKey, init, function (e) {
     console.error('Authentication error: ' + e)
   })
 }
+
+initializeEarthEngine()
