@@ -1,30 +1,18 @@
-import { inject, injectable } from 'tsyringe'
-
-import { IMiningMineRepositoryApi } from '../../repositories/IMiningMineRepositoryApi'
-
-interface IRequest {
-  tile: {
-    z: number
-    x: number
-    y: number
-    format: 'mvt' | 'pbf'
-  }
-  countryCode?: number
-}
+import ee from '@google/earthengine'
+import { injectable } from 'tsyringe'
 
 @injectable()
 export class GetMiningMinePointsService {
-  constructor(
-    @inject('MiningMineRepositoryApi')
-    private miningMineRepositoryApi: IMiningMineRepositoryApi
-  ) {}
+  constructor() {}
 
-  async execute({ tile, countryCode }: IRequest) {
-    const { mvt } = await this.miningMineRepositoryApi.getPointsAsMvt({
-      tile,
-      countryCode,
+  async execute() {
+    const featureCollection = ee.FeatureCollection(
+      'projects/ora-rh/assets/indicators/mining-mine'
+    )
+    const { urlFormat: url } = featureCollection.getMap({
+      format: 'png',
+      color: 'green',
     })
-
-    return mvt
+    return { url }
   }
 }
