@@ -39,7 +39,10 @@ miningRoutes.get(
 miningRoutes.get('/illegal/ranking', getSubstanceRankingController.handle)
 
 miningRoutes.get('/mine/tiles', getMiningMinePointsController.handle)
-miningRoutes.get('/mine/tiles/properties', getPropertiesController.handle)
+miningRoutes.get(
+  '/mine/tiles/properties/:long/:lat',
+  getPropertiesController.handle
+)
 miningRoutes.get(
   '/mine/total/occurrences',
   getTotalMiningMineOccurrencesController.handle
