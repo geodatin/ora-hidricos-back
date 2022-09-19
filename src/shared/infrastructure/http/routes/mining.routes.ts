@@ -2,14 +2,13 @@ import { GetIllegalMiningPointsController } from '@modules/mining/api/services/g
 import { GetIllegalMiningTimeSeriesController } from '@modules/mining/api/services/getIllegalMiningTimeSeries/GetIllegalMiningTimeSeriesController'
 import { GetMinesByCountryController } from '@modules/mining/api/services/getMinesByCountry/GetMinesByCountryController'
 import { GetMiningMinePointsController } from '@modules/mining/api/services/getMiningMinePoints/GetMiningMinePointsController'
+import { GetPropertiesController } from '@modules/mining/api/services/getProperties/GetPropertiesController'
 import { GetSituationMapController } from '@modules/mining/api/services/getSituationMap/GetSituationMapController'
 import { GetSubstanceRankingController } from '@modules/mining/api/services/getSubstanceRanking/GetSubstanceRankingController'
 import { GetTotalIllegalMiningOccurrencesController } from '@modules/mining/api/services/getTotalllegalMiningOccurrences/GetTotalIllegalMiningOccurrencesController'
 import { GetTotalMiningMineOccurrencesController } from '@modules/mining/api/services/getTotalMiningMineOccurrences/GetTotalMiningMineOccurrencesController'
 import { GetCompanyRankingController } from '@modules/oil/api/services/getCompanyRanking/GetCompanyRankingController'
 import { Router } from 'express'
-
-import { checkTile } from '../middlewares/checkTile'
 
 export const miningRoutes = Router()
 
@@ -26,6 +25,7 @@ const getTotalMiningMineOccurrencesController =
 const getCompanyRankingController = new GetCompanyRankingController()
 const getMinesByCountryController = new GetMinesByCountryController()
 const getSituationMapController = new GetSituationMapController()
+const getPropertiesController = new GetPropertiesController()
 
 miningRoutes.get('/illegal/points', getIllegalMiningPointsController.handle)
 miningRoutes.get(
@@ -39,7 +39,7 @@ miningRoutes.get(
 miningRoutes.get('/illegal/ranking', getSubstanceRankingController.handle)
 
 miningRoutes.get('/mine/tiles', getMiningMinePointsController.handle)
-
+miningRoutes.get('/mine/tiles/properties', getPropertiesController.handle)
 miningRoutes.get(
   '/mine/total/occurrences',
   getTotalMiningMineOccurrencesController.handle
