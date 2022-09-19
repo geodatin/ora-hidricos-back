@@ -4,6 +4,7 @@ import { ICreateIllegalMiningRecord } from '@modules/mining/collector/dtos/ICrea
 import { ICreateMiningMineRecord } from '@modules/mining/collector/dtos/ICreateMiningMineRecord'
 import { ICreateOilFieldRecord } from '@modules/oil/collector/dtos/ICreateOilFieldRecord'
 import { OrganicPollution } from '@modules/pollution/infrastructure/models/OrganicPollution'
+import { FloodZone } from '@modules/soil/api/infrastructure/models/FloodZone'
 import { ICreateDeforestationRecord } from '@modules/soil/collector/dtos/ICreateDeforestationRecord'
 import { ICreateWaterwayRecord } from '@modules/waterResources/collector/dtos/ICreateWaterwayRecord'
 import { Pool } from 'pg'
@@ -180,9 +181,7 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
       ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
         nombre as name,
         pais as country
-      FROM produto_3."TRA_Hidrovias_BHA_OTCA_2021_L" offset ${
-        size - 1
-      } limit ${size}`
+      FROM produto_3."TRA_Hidrovias_BHA_OTCA_2021_L" offset ${size - 1} limit 1`
     )
     await pool.end()
     return rows
@@ -211,6 +210,21 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
         j_qdil_40m as qdil40m
       FROM produto_3."QLD_Indice_Poluicao_Organica_BHA_COBRAPE_2021_A"
       offset ${size} * 10000 limit 10000`
+    )
+    await pool.end()
+    return rows
+  }
+
+  async getFloodZonesInfo(size: number): Promise<FloodZone[]> {
+    const pool = this.connect()
+    const { rows } = await pool.query(
+      `SELECT 
+      ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
+        nome as name,
+        areaha as area
+      FROM produto_3."LIM_Zonas_Inundaveis_Sub_Bacia_OTCA_2021_A" offset ${
+        size - 1
+      } limit 1`
     )
     await pool.end()
     return rows

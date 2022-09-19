@@ -4,6 +4,7 @@ import { ICreateIllegalMiningRecord } from '@modules/mining/collector/dtos/ICrea
 import { ICreateMiningMineRecord } from '@modules/mining/collector/dtos/ICreateMiningMineRecord'
 import { ICreateOilFieldRecord } from '@modules/oil/collector/dtos/ICreateOilFieldRecord'
 import { OrganicPollution } from '@modules/pollution/infrastructure/models/OrganicPollution'
+import { FloodZone } from '@modules/soil/api/infrastructure/models/FloodZone'
 import { ICreateDeforestationRecord } from '@modules/soil/collector/dtos/ICreateDeforestationRecord'
 import { ICreateWaterwayRecord } from '@modules/waterResources/collector/dtos/ICreateWaterwayRecord'
 
@@ -16,4 +17,5 @@ export interface IExternalDatabaseProvider {
   getDeforestationInfo(): Promise<ICreateDeforestationRecord[]>
   getWaterwayInfo(size: number): Promise<ICreateWaterwayRecord[]>
   getOrganicPollutionInfo(size: number): Promise<OrganicPollution[]>
+  getFloodZonesInfo(size: number): Promise<FloodZone[]>
 }
