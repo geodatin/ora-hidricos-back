@@ -23,6 +23,8 @@ import { OilFieldRepository } from '@modules/oil/collector/infrastructure/reposi
 import { IOilFieldRepository } from '@modules/oil/collector/repositories/IOilFieldRepository'
 import { OrganicPollutionRepository } from '@modules/pollution/infrastructure/repositories/OrganicPollutionRepository'
 import { IOrganicPollutionRepository } from '@modules/pollution/repositories/IOrganicPollutionRepository'
+import { FloodZoneRepository } from '@modules/soil/api/infrastructure/repositories/FloodZoneRepository'
+import { IFloodZoneRepository } from '@modules/soil/api/repositories/IFloodZoneRepository'
 import { DeforestationRepository } from '@modules/soil/collector/infrastructure/repositories/DeforestationRepository'
 import { IDeforestationRepository } from '@modules/soil/collector/repositories/IDeforestationRepository'
 import { AmazonCityRepository } from '@modules/territory/infrastructure/typeorm/repositories/AmazonCityRepository'
@@ -149,4 +151,9 @@ container.registerSingleton<IWaterUserRepository>(
 container.registerSingleton<IWaterUserRepository>(
   'WaterUserUnionRepository',
   WaterUserUnionRepository
+)
+
+container.registerSingleton<IFloodZoneRepository>(
+  'FloodZoneRepository',
+  FloodZoneRepository
 )
