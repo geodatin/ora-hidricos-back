@@ -2031,75 +2031,6 @@
                 }
             }
         },
-        "/soil/points/total": {
-            "get": {
-                "tags": [
-                    "Soil"
-                ],
-                "description": "Get total organic pollution occurrences",
-                "summary": "Organic pollution occurrences",
-                "parameters": [
-                    {
-                        "name": "countryCode",
-                        "in": "query",
-                        "description": "Code for the specified country",
-                        "required": false,
-                        "schema": {
-                            "type": "number"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "count": {
-                                            "type": "number"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Informed code does not exist"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Internal server error"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/pollution/total": {
             "get": {
                 "tags": [
@@ -3294,7 +3225,7 @@
                 }
             }
         },
-        "/mine/tiles/properties/{long}/{lat}": {
+        "/mining/mine/tiles/properties/{long}/{lat}": {
             "get": {
                 "description": "Return the properties for the Mining Mines",
                 "tags": [
@@ -3364,6 +3295,276 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Point out of bounds"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/flood/tiles": {
+            "get": {
+                "description": "Return the tiles for the Flood Zones",
+                "tags": [
+                    "Flood Zones"
+                ],
+                "summary": "Flood Zones tiles",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/flood/tiles/properties/{long}/{lat}": {
+            "get": {
+                "description": "Return the tiles properties for the Flood Zones",
+                "tags": [
+                    "Flood Zones"
+                ],
+                "summary": "Flood Zones tiles properties",
+                "parameters": [
+                    {
+                        "name": "long",
+                        "in": "path",
+                        "description": "Longitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "example": -62.82722
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "path",
+                        "description": "Latitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "example": -9.46326
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Point out of bounds"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/flood/total": {
+            "get": {
+                "tags": [
+                    "Flood Zones"
+                ],
+                "description": "Get total Flood Zones area",
+                "summary": "Flood Zones",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/flood/ranking/area": {
+            "get": {
+                "description": "Return the ranking for the Flood Zones area",
+                "tags": [
+                    "Flood Zones"
+                ],
+                "summary": "Country ranking",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
                                         }
                                     }
                                 }
