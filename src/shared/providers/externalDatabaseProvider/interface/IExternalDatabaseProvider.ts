@@ -18,4 +18,5 @@ export interface IExternalDatabaseProvider {
   getWaterwayInfo(size: number): Promise<ICreateWaterwayRecord[]>
   getOrganicPollutionInfo(size: number): Promise<OrganicPollution[]>
   getFloodZonesInfo(size: number): Promise<FloodZone[]>
+  getHydroelectricInfo(): Promise<any[]>
 }

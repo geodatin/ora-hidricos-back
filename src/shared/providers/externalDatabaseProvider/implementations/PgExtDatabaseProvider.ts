@@ -230,6 +230,41 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
     return rows
   }
 
+  async getHydroelectricInfo(): Promise<any[]> {
+    const pool = this.connect()
+    const { rows } = await pool.query(
+      `SELECT 
+      id as code,
+      ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
+        tipo as type,
+        pais as country,
+        fonte as source,
+        pot_mw as potency,
+        leyenda as sub,
+        institucio as institution,
+        empresa as company,
+        nombre as name,
+        estagio as status
+      FROM produto_3."ANT_UHE_BHA_RAISG_2020_P"
+      UNION
+      SELECT 
+      id + 300 as code,
+      ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
+        tipo as type,
+        pais as country,
+        fonte as source,
+        pot_mw as potency,
+        leyenda as sub,
+        institucio as institution,
+        empresa as company,
+        nombre as name,
+        estagio as status
+      FROM produto_3."ANT_PCH_BHA_RAISG_2020_P"`
+    )
+    await pool.end()
+    return rows
+  }
+
   private connect() {
     return new Pool({
       user: process.env.DB_USER,
