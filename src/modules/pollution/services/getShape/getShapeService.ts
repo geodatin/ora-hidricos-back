@@ -1,24 +1,15 @@
-import { ITileDTO } from '@modules/pollution/dtos/ITileDTO'
-import { IOrganicPollutionRepository } from '@modules/pollution/repositories/IOrganicPollutionRepository'
-import { inject, injectable } from 'tsyringe'
-
-interface IRequest {
-  countryCode?: number
-  tile: ITileDTO
-}
-
+import ee from '@google/earthengine'
+import { injectable } from 'tsyringe'
 @injectable()
 export class GetShapeService {
-  constructor(
-    @inject('OrganicPollutionRepository')
-    private OrganicPollutionRepository: IOrganicPollutionRepository
-  ) {}
-
-  async execute({ countryCode, tile }: IRequest) {
-    const { mvt } = await this.OrganicPollutionRepository.getShapeAsMvt({
-      tile,
-      countryCode,
+  async execute() {
+    const featureCollection = ee.FeatureCollection(
+      'projects/ora-rh/assets/indicators/organic-pollution'
+    )
+    const { urlFormat: url } = featureCollection.getMap({
+      format: 'png',
+      color: 'green',
     })
-    return mvt
+    return { url }
   }
 }
