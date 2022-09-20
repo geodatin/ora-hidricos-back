@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import { floodRoutes } from './flood.routes'
+import { hydroelectricRoutes } from './hydroelectric.routes'
 import { mercuryRoutes } from './mercury.routes'
 import { miningRoutes } from './mining.routes'
 import { oilRoutes } from './oil.routes'
@@ -21,5 +22,6 @@ routes.use('/flood', floodRoutes)
 routes.use('/mining', miningRoutes)
 routes.use('/waterway', waterwayRoutes)
 routes.use('/pollution', pollutionRoutes)
+routes.use('/hydroelectric', hydroelectricRoutes)
 
 export { routes }
