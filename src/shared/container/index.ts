@@ -33,7 +33,9 @@ import { AmazonStateRepository } from '@modules/territory/infrastructure/typeorm
 import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCityRepository'
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
+import { HydroelectricRepository } from '@modules/waterResources/api/infrastructure/repositories/HydroelectricRepository'
 import { WaterwayRepositoryApi } from '@modules/waterResources/api/infrastructure/repositories/WaterwayRepository'
+import { IHydroelectricRepository } from '@modules/waterResources/api/repositories/IHydroelectricRepository'
 import { IWaterwayRepositoryApi } from '@modules/waterResources/api/repositories/IWatewayRepositoryApi'
 import { WaterwayRepository } from '@modules/waterResources/collector/infrastructure/repositories/WaterwayRepository'
 import { IWaterwayRepository } from '@modules/waterResources/collector/repositories/IWaterwayRepository'
@@ -156,4 +158,9 @@ container.registerSingleton<IWaterUserRepository>(
 container.registerSingleton<IFloodZoneRepository>(
   'FloodZoneRepository',
   FloodZoneRepository
+)
+
+container.registerSingleton<IHydroelectricRepository>(
+  'HydroelectricRepository',
+  HydroelectricRepository
 )
