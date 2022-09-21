@@ -1,6 +1,8 @@
 import { WaterUserStateRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserStateRepository'
 import { WaterUserUnionRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserUnionRepository'
 import { IWaterUserRepository } from '@modules/anaWaterUsers/repositories/IWaterUserRepository'
+import { HgcAspectsRepository } from '@modules/hgcAspects/infrastructure/repositories/HgcAspectsRepoitory'
+import { IHgcAspectsRepository } from '@modules/hgcAspects/repositories/IHgcAspectsRepository'
 import { FishMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/FishMercuryRepositoryApi'
 import { HumanMercuryRepositoryApi } from '@modules/mercury/api/infrastructure/repositories/HumanMercuryRepositoryApi'
 import { IFishMercuryRepositoryApi } from '@modules/mercury/api/repositories/IFishMercuryRepositoryApi'
@@ -23,6 +25,8 @@ import { OilFieldRepository } from '@modules/oil/collector/infrastructure/reposi
 import { IOilFieldRepository } from '@modules/oil/collector/repositories/IOilFieldRepository'
 import { OrganicPollutionRepository } from '@modules/pollution/infrastructure/repositories/OrganicPollutionRepository'
 import { IOrganicPollutionRepository } from '@modules/pollution/repositories/IOrganicPollutionRepository'
+import { PopulationRepository } from '@modules/population/infrastructure/repositories/PopulationRepoitory'
+import { IPopulationRepository } from '@modules/population/repositories/IPopulationRepository'
 import { FloodZoneRepository } from '@modules/soil/api/infrastructure/repositories/FloodZoneRepository'
 import { IFloodZoneRepository } from '@modules/soil/api/repositories/IFloodZoneRepository'
 import { DeforestationRepository } from '@modules/soil/collector/infrastructure/repositories/DeforestationRepository'
@@ -163,4 +167,14 @@ container.registerSingleton<IFloodZoneRepository>(
 container.registerSingleton<IHydroelectricRepository>(
   'HydroelectricRepository',
   HydroelectricRepository
+)
+
+container.registerSingleton<IPopulationRepository>(
+  'PopulationRepository',
+  PopulationRepository
+)
+
+container.registerSingleton<IHgcAspectsRepository>(
+  'HgcAspectsRepository',
+  HgcAspectsRepository
 )

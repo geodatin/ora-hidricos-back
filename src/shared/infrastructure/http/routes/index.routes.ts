@@ -1,11 +1,13 @@
 import { Router } from 'express'
 
 import { floodRoutes } from './flood.routes'
+import { hgcAspectsRoutes } from './hgcAspects.routes'
 import { hydroelectricRoutes } from './hydroelectric.routes'
 import { mercuryRoutes } from './mercury.routes'
 import { miningRoutes } from './mining.routes'
 import { oilRoutes } from './oil.routes'
 import { pollutionRoutes } from './pollution.routes'
+import { populationRoutes } from './population.routes'
 import { territoryRoutes } from './territory.routes'
 import { waterSurfaceRoutes } from './waterSurface.routes'
 import { waterUsersRoutes } from './waterUsers.routes'
@@ -23,5 +25,7 @@ routes.use('/mining', miningRoutes)
 routes.use('/waterway', waterwayRoutes)
 routes.use('/pollution', pollutionRoutes)
 routes.use('/hydroelectric', hydroelectricRoutes)
+routes.use('/population', populationRoutes)
+routes.use('/hydrogeochemistry', hgcAspectsRoutes)
 
 export { routes }

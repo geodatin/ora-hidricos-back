@@ -265,6 +265,35 @@ export class PgExtDatabaseProvider implements IExternalDatabaseProvider {
     return rows
   }
 
+  async getPopulationInfo(): Promise<any[]> {
+    const pool = this.connect()
+    const { rows } = await pool.query(
+      `SELECT 
+      id as code,
+      ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
+        total as total,
+        nunivotto3 as nunivotto
+      FROM produto_3."LIM_Populacao_Corrigido_N3_BHA_COBRAPE_2021_A"`
+    )
+    await pool.end()
+    return rows
+  }
+
+  async getHgcAspectsInfo(): Promise<any[]> {
+    const pool = this.connect()
+    const { rows } = await pool.query(
+      `SELECT 
+      id as code,
+      ST_AsGeoJSON(ST_Transform(geom, 4326))::jsonb as geometry,
+      nooriginal as "riverName",
+        dedominial as domain,
+        carac_hidr as aspect
+      FROM produto_3."HID_Caracteristicas_Hidrogeoquimicas_BHA_COBRAPE_2021_L"`
+    )
+    await pool.end()
+    return rows
+  }
+
   private connect() {
     return new Pool({
       user: process.env.DB_USER,
