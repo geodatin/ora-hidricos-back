@@ -11,4 +11,4 @@ const getWatershedRankingController = new GetWatershedRankingController()
 
 populationRoutes.get('/tiles', getShapeController.handle)
 populationRoutes.get('/total', getTotalController.handle)
-populationRoutes.get('/ranking/watershed', getWatershedRankingController.handle)
+populationRoutes.get('/ranking', getWatershedRankingController.handle)
