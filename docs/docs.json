@@ -4190,17 +4190,7 @@
                 ],
                 "description": "Get total occurrences of population",
                 "summary": "Get total occurrences of population",
-                "parameters": [
-                    {
-                        "name": "countryCode",
-                        "in": "query",
-                        "description": "Country Code",
-                        "required": false,
-                        "schema": {
-                            "type": "number"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "Success",
