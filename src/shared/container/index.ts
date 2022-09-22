@@ -38,8 +38,10 @@ import { IAmazonCityRepository } from '@modules/territory/repositories/IAmazonCi
 import { IAmazonCountryRepository } from '@modules/territory/repositories/IAmazonCountryRepository'
 import { IAmazonStateRepository } from '@modules/territory/repositories/IAmazonStateRepository'
 import { HydroelectricRepository } from '@modules/waterResources/api/infrastructure/repositories/HydroelectricRepository'
+import { VulnerabilityMapsRepository } from '@modules/waterResources/api/infrastructure/repositories/VulnerabilityMapsRepository'
 import { WaterwayRepositoryApi } from '@modules/waterResources/api/infrastructure/repositories/WaterwayRepository'
 import { IHydroelectricRepository } from '@modules/waterResources/api/repositories/IHydroelectricRepository'
+import { IVulnerabilityMapsRepository } from '@modules/waterResources/api/repositories/IVulnerabilityMapsRepository'
 import { IWaterwayRepositoryApi } from '@modules/waterResources/api/repositories/IWatewayRepositoryApi'
 import { WaterwayRepository } from '@modules/waterResources/collector/infrastructure/repositories/WaterwayRepository'
 import { IWaterwayRepository } from '@modules/waterResources/collector/repositories/IWaterwayRepository'
@@ -177,4 +179,9 @@ container.registerSingleton<IPopulationRepository>(
 container.registerSingleton<IHgcAspectsRepository>(
   'HgcAspectsRepository',
   HgcAspectsRepository
+)
+
+container.registerSingleton<IVulnerabilityMapsRepository>(
+  'VulnerabilityMapsRepository',
+  VulnerabilityMapsRepository
 )
