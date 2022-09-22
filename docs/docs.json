@@ -357,6 +357,56 @@
                         }
                     }
                 }
+            },
+            "geojson-hgc": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "features": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "geometry": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "coordinates": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "properties": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "domain": {
+                                            "type": "string"
+                                        },
+                                        "riverName": {
+                                            "type": "string"
+                                        },
+                                        "aspect": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -4249,6 +4299,315 @@
                     "Population"
                 ],
                 "summary": "Population ranking",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hydrogeochemistry/shape": {
+            "get": {
+                "description": "Return the shape for the hydrogeochemistry occurrences",
+                "tags": [
+                    "Hydrogeochemistry"
+                ],
+                "summary": "Hydrogeochemistry shape",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/geojson-hgc"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hydrogeochemistry/total": {
+            "get": {
+                "tags": [
+                    "Hydrogeochemistry"
+                ],
+                "description": "Get total occurrences of Hydrogeochemistry",
+                "summary": "Get total occurrences of Hydrogeochemistry",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "count": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Informed code does not exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hydrogeochemistry/ranking/domain": {
+            "get": {
+                "description": "Return the ranking for the substances",
+                "tags": [
+                    "Hydrogeochemistry"
+                ],
+                "summary": "Hydrogeochemistry ranking",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Ranking Page",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Ranking Page Size",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "x": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Barcelos (Brasil)",
+                                                "Santarém (Brasil)",
+                                                "Coari (Brasil)",
+                                                "Presidente Figueiredo (Brasil)",
+                                                "Parintins (Brasil)"
+                                            ]
+                                        },
+                                        "series": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "data"
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "example": [
+                                                            427080.15,
+                                                            363226.22,
+                                                            239112.49,
+                                                            238116.35,
+                                                            207305.45
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "position": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "pages": {
+                                            "type": "number",
+                                            "example": 329
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code is required for city territory type!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hydrogeochemistry/ranking/aspects": {
+            "get": {
+                "description": "Return the ranking for the substances",
+                "tags": [
+                    "Hydrogeochemistry"
+                ],
+                "summary": "Hydrogeochemistry ranking",
                 "parameters": [
                     {
                         "name": "page",
