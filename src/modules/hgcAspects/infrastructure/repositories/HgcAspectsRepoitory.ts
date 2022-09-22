@@ -22,6 +22,7 @@ export class HgcAspectsRepository implements IHgcAspectsRepository {
       .select(`hgc.domain`, 'name')
       .addSelect('COUNT(1)', 'amount')
       .where(`hgc.domain IS NOT NULL`)
+      .groupBy('hgc.domain')
       .orderBy('amount', 'DESC')
 
     return await getRankingQuery.getRawMany()
@@ -33,6 +34,7 @@ export class HgcAspectsRepository implements IHgcAspectsRepository {
       .select(`hgc.aspect`, 'name')
       .addSelect('COUNT(1)', 'amount')
       .where(`hgc.aspect IS NOT NULL`)
+      .groupBy('hgc.aspect')
       .orderBy('amount', 'DESC')
 
     return await getRankingQuery.getRawMany()
