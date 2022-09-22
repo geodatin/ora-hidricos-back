@@ -9,6 +9,7 @@ import { oilRoutes } from './oil.routes'
 import { pollutionRoutes } from './pollution.routes'
 import { populationRoutes } from './population.routes'
 import { territoryRoutes } from './territory.routes'
+import { vulnerabilityRoutes } from './vulnerability.routes'
 import { waterSurfaceRoutes } from './waterSurface.routes'
 import { waterUsersRoutes } from './waterUsers.routes'
 import { waterwayRoutes } from './waterway.routes'
@@ -27,5 +28,6 @@ routes.use('/pollution', pollutionRoutes)
 routes.use('/hydroelectric', hydroelectricRoutes)
 routes.use('/population', populationRoutes)
 routes.use('/hydrogeochemistry', hgcAspectsRoutes)
+routes.use('/vulnerability', vulnerabilityRoutes)
 
 export { routes }
