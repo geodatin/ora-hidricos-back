@@ -1,3 +1,5 @@
+import { AgriculturalRepository } from '@modules/agricultural/infrastructure/repositories/AgriculturalRepository'
+import { IAgriculturalRepository } from '@modules/agricultural/repositories/IAgriculturalRepository'
 import { WaterUserStateRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserStateRepository'
 import { WaterUserUnionRepository } from '@modules/anaWaterUsers/infrastructure/repositories/WaterUserUnionRepository'
 import { IWaterUserRepository } from '@modules/anaWaterUsers/repositories/IWaterUserRepository'
@@ -184,4 +186,9 @@ container.registerSingleton<IHgcAspectsRepository>(
 container.registerSingleton<IVulnerabilityMapsRepository>(
   'VulnerabilityMapsRepository',
   VulnerabilityMapsRepository
+)
+
+container.registerSingleton<IAgriculturalRepository>(
+  'AgriculturalRepository',
+  AgriculturalRepository
 )
