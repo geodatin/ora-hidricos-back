@@ -1,5 +1,6 @@
 import { Router } from 'express'
 
+import { agriculturalRoutes } from './agricultural.routes'
 import { floodRoutes } from './flood.routes'
 import { hgcAspectsRoutes } from './hgcAspects.routes'
 import { hydroelectricRoutes } from './hydroelectric.routes'
@@ -29,5 +30,6 @@ routes.use('/hydroelectric', hydroelectricRoutes)
 routes.use('/population', populationRoutes)
 routes.use('/hydrogeochemistry', hgcAspectsRoutes)
 routes.use('/vulnerability', vulnerabilityRoutes)
+routes.use('/agricultural', agriculturalRoutes)
 
 export { routes }
