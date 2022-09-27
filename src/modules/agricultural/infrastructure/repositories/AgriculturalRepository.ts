@@ -25,9 +25,10 @@ export class AgriculturalRepository implements IAgriculturalRepository {
   async getAreaByName(): Promise<IRanking[]> {
     const ranking = await this.repository
       .createQueryBuilder('agriculture')
-      .select('area_km2', 'amount')
+      .select('SUM(area_km2)', 'amount')
       .addSelect('nome', 'name')
-      .orderBy('area_km2', 'DESC')
+      .groupBy('name')
+      .orderBy('amount', 'DESC')
       .getRawMany()
 
     return ranking
