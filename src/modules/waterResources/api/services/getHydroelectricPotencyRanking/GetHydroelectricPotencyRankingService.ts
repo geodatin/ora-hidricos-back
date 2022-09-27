@@ -28,6 +28,7 @@ export class GetHydroelectricPotencyRankingService {
     ranking: {
       name: string
       amount: number
+      country: string
     }[],
     page: number,
     pageSize: number
@@ -37,7 +38,7 @@ export class GetHydroelectricPotencyRankingService {
     const position = []
 
     for (const [index, record] of ranking.entries()) {
-      x.push(record.name)
+      x.push(`${record.name} - ${record.country}`)
       data.push(record.amount)
       position.push(index + 1)
     }
