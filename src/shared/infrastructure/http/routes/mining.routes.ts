@@ -1,3 +1,4 @@
+import { GetIllegalMiningByCountryController } from '@modules/mining/api/services/getIllegalMiningByCountry/GetIllegalMiningByCountryController'
 import { GetIllegalMiningPointsController } from '@modules/mining/api/services/getIllegalMiningPoints/GetIllegalMiningPointsController'
 import { GetIllegalMiningTimeSeriesController } from '@modules/mining/api/services/getIllegalMiningTimeSeries/GetIllegalMiningTimeSeriesController'
 import { GetMinesByCountryController } from '@modules/mining/api/services/getMinesByCountry/GetMinesByCountryController'
@@ -26,6 +27,8 @@ const getCompanyRankingController = new GetCompanyRankingController()
 const getMinesByCountryController = new GetMinesByCountryController()
 const getSituationMapController = new GetSituationMapController()
 const getPropertiesController = new GetPropertiesController()
+const getIllegalMiningByCountryController =
+  new GetIllegalMiningByCountryController()
 
 miningRoutes.get('/illegal/points', getIllegalMiningPointsController.handle)
 miningRoutes.get(
@@ -37,6 +40,10 @@ miningRoutes.get(
   getIllegalMiningTimeSeriesController.handle
 )
 miningRoutes.get('/illegal/ranking', getSubstanceRankingController.handle)
+miningRoutes.get(
+  '/illegal/countries',
+  getIllegalMiningByCountryController.handle
+)
 
 miningRoutes.get('/mine/tiles', getMiningMinePointsController.handle)
 miningRoutes.get(
