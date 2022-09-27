@@ -29,12 +29,13 @@ export class HydroelectricRepository implements IHydroelectricRepository {
     const getRankingQuery = this.repository
       .createQueryBuilder('hydroelectric')
       .select(`hydroelectric.name`, 'name')
+      .addSelect(`hydroelectric.country`, 'country')
       .addSelect('hydroelectric.potency', 'amount')
       .where(`hydroelectric.name IS NOT NULL`)
       .orderBy('amount', 'DESC')
 
     if (countryCode) {
-      getRankingQuery.where('country_code = :countryCode', { countryCode })
+      getRankingQuery.andWhere('country_code = :countryCode', { countryCode })
     }
 
     return await getRankingQuery.getRawMany()

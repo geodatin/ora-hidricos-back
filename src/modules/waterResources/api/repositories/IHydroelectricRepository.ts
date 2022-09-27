@@ -3,6 +3,7 @@ import { Hydroelectric } from '../infrastructure/models/Hydroelectric'
 export interface IRanking {
   name: string
   amount: number
+  country: string
 }
 
 export interface IHydroelectricRepository {
