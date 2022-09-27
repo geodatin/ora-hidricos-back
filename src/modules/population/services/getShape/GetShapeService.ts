@@ -15,7 +15,7 @@ export class GetShapeService {
       .visualize({
         min: 132,
         max: 5633481,
-        palette: ['FCFDBF', 'FDAE78', 'EE605E', 'B63679', '711F81', '2C105C'],
+        palette: ['#b3cde0', '#6497b1', '#005b96', '#03396c', '#011f4b'],
       })
 
     const { urlFormat: url } = image.getMap({
