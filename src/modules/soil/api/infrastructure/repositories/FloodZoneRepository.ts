@@ -27,7 +27,7 @@ export class FloodZoneRepository implements IFloodZoneRepository {
       .createQueryBuilder('flood_zone')
       .select('area', 'amount')
       .addSelect('name', 'name')
-      .orderBy('area')
+      .orderBy('area', 'DESC')
       .getRawMany()
 
     return ranking
