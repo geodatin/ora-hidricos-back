@@ -9,7 +9,7 @@ export class GetShapeAsTilesService {
     )
     const { urlFormat: url } = featureCollection.getMap({
       format: 'png',
-      color: 'f38145',
+      color: '(178, 166, 55)',
     })
     return { url }
   }
