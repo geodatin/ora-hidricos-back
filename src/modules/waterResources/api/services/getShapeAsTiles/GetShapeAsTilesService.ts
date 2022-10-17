@@ -7,10 +7,21 @@ export class GetShapeAsTilesService {
     const featureCollection = ee.FeatureCollection(
       'projects/ora-rh/assets/indicators/waterways'
     )
-    const { urlFormat: url } = featureCollection.getMap({
+    const image = featureCollection
+      .reduceToImage({
+        properties: ['id'],
+        reducer: ee.Reducer.first(),
+      })
+      .visualize({
+        min: 0,
+        max: 1000,
+        palette: ['#f38145'],
+      })
+
+    const { urlFormat: url } = image.getMap({
       format: 'png',
-      color: '#f38145',
     })
+
     return { url }
   }
 }
