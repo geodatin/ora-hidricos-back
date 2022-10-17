@@ -3,6 +3,7 @@ import { getRepository, Repository } from 'typeorm'
 import {
   IHydroelectricRepository,
   IRanking,
+  ITable,
 } from '../../repositories/IHydroelectricRepository'
 import { Hydroelectric } from '../models/Hydroelectric'
 
@@ -11,6 +12,28 @@ export class HydroelectricRepository implements IHydroelectricRepository {
 
   constructor() {
     this.repository = getRepository(Hydroelectric)
+  }
+
+  async getByStatus(
+    countryCode: number,
+    type: 'UHE' | 'PCH'
+  ): Promise<ITable[]> {
+    const getTableQuery = this.repository
+      .createQueryBuilder('hydroelectric')
+      .select(`hydroelectric.sub`, 'sub')
+      .addSelect('COUNT(1)', 'total')
+      .addSelect(`hydroelectric.type`, 'type')
+      .where(`hydroelectric.country IS NOT NULL`)
+      .andWhere(`hydroelectric.type = :type`, { type })
+      .groupBy(`hydroelectric.sub`)
+      .addGroupBy(`hydroelectric.type`)
+      .orderBy('total', 'DESC')
+
+    if (countryCode) {
+      getTableQuery.andWhere('country_code = :countryCode', { countryCode })
+    }
+
+    return await getTableQuery.getRawMany()
   }
 
   async getPoints(countryCode: number): Promise<Hydroelectric[]> {
