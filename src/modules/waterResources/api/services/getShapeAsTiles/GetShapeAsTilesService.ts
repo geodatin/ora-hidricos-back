@@ -5,7 +5,7 @@ import { injectable } from 'tsyringe'
 export class GetShapeAsTilesService {
   async execute() {
     const featureCollection = ee.FeatureCollection(
-      'projects/ora-rh/assets/indicators/waterways'
+      'projects/ora-rh/assets/indicators/waterway'
     )
     const { urlFormat: url } = featureCollection.getMap({
       format: 'png',
