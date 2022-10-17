@@ -1,3 +1,4 @@
+import { GetHydroelectricByStatusController } from '@modules/waterResources/api/services/getHydroelectricByStatus/GetHydroelectricByStatusController'
 import { GetHydroelectricCountriesRankingController } from '@modules/waterResources/api/services/getHydroelectricCountriesRanking/GetHydroelectricCountriesRankingController'
 import { GetHydroelectricPointsController } from '@modules/waterResources/api/services/getHydroelectricPoints/GetHydroelectricPointsController'
 import { GetHydroelectricPotencyRankingController } from '@modules/waterResources/api/services/getHydroelectricPotencyRanking/GetHydroelectricPotencyRankingController'
@@ -12,7 +13,8 @@ const getHydroelectricCountriesRankingController =
   new GetHydroelectricCountriesRankingController()
 const getHydroelectricPotencyRankingController =
   new GetHydroelectricPotencyRankingController()
-
+const getHydroelectricByStatusController =
+  new GetHydroelectricByStatusController()
 hydroelectricRoutes.get('/points', getHydroelectricPointsController.handle)
 hydroelectricRoutes.get('/total', getTotalHydroelectricController.handle)
 hydroelectricRoutes.get(
@@ -22,4 +24,8 @@ hydroelectricRoutes.get(
 hydroelectricRoutes.get(
   '/ranking/potency',
   getHydroelectricPotencyRankingController.handle
+)
+hydroelectricRoutes.get(
+  '/:type/status',
+  getHydroelectricByStatusController.handle
 )
