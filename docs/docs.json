@@ -5450,6 +5450,81 @@
                     }
                 }
             }
+        },
+        "/hydroelectric/{type}/status": {
+            "get": {
+                "tags": [
+                    "Hydroelectric"
+                ],
+                "description": "Get number of hydroelectrics by status",
+                "summary": "Hydroelectrics by status",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Territory type to get the points",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of hydroelectric",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "UHC",
+                                "PCH"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "sub": {
+                                                "type": "string"
+                                            },
+                                            "total": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
