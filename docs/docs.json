@@ -5476,7 +5476,7 @@
                         "schema": {
                             "type": "string",
                             "enum": [
-                                "UHC",
+                                "UHE",
                                 "PCH"
                             ]
                         }
