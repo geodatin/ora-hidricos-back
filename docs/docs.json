@@ -4839,10 +4839,13 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "id": {
                                             "type": "integer"
                                         },
                                         "name": {
+                                            "type": "string"
+                                        }, 
+                                        "area": {
                                             "type": "string"
                                         }
                                     }
