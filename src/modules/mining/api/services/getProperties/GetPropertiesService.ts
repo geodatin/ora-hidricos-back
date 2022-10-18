@@ -22,7 +22,6 @@ export class GetPropertiesService {
       throw new AppError('Point out of bounds', 400)
     }
     const feature = filteredGeom.features[filteredGeom.features.length - 1]
-
     return feature.properties
   }
 }
