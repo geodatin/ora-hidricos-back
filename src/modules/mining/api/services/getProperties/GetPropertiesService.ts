@@ -17,21 +17,12 @@ export class GetPropertiesService {
       'projects/ora-rh/assets/indicators/mining-mine'
     )
     const point = ee.Geometry.Point([long, lat])
-    const filteredGeom = featureCollection.filterBounds(point).first()
-    if (!filteredGeom.getInfo()) {
+    const filteredGeom = featureCollection.filterBounds(point).getInfo()
+    if (!filteredGeom) {
       throw new AppError('Point out of bounds', 400)
     }
-    const properties = filteredGeom
-      .toDictionary([
-        'code',
-        'company',
-        'institution',
-        'name',
-        'situation',
-        'source',
-      ])
-      .getInfo()
+    const feature = filteredGeom.features[filteredGeom.features.length - 1]
 
-    return properties
+    return feature.properties
   }
 }
