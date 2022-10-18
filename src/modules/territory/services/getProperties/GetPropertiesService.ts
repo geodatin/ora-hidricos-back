@@ -14,7 +14,7 @@ export class GetPropertiesService {
 
   async execute({ long, lat }: IRequest) {
     const featureCollection = ee.FeatureCollection(
-      'projects/ora-rh/assets/indicators/amazon'
+      'projects/ora-rh/assets/indicators/subwatersheds'
     )
     const point = ee.Geometry.Point([long, lat])
     const filteredGeom = featureCollection.filterBounds(point).first()
