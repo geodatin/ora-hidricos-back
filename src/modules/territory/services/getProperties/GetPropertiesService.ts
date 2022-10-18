@@ -21,8 +21,14 @@ export class GetPropertiesService {
     if (!filteredGeom.getInfo()) {
       throw new AppError('Point out of bounds', 400)
     }
-    const properties = filteredGeom.toDictionary(['code', 'name']).getInfo()
+    const properties = filteredGeom
+      .toDictionary(['ID', 'NOME', 'AREAHA'])
+      .getInfo()
 
-    return properties
+    return {
+      id: properties.ID,
+      name: properties.NOME,
+      area: properties.AREA,
+    }
   }
 }
