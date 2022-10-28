@@ -19,7 +19,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "/home/netohsa66/ora-hidricos-back"
+          target: "ora-hidricos-back"
           
       - name: Update API
         uses: appleboy/ssh-action@master
@@ -29,6 +29,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/netohsa66/ora-hidricos-back
+            cd ora-hidricos-back
             sudo yarn
             sudo yarn dev
