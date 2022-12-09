@@ -13,14 +13,20 @@ export class GetShapeService {
         reducer: ee.Reducer.first(),
       })
       .visualize({
-        min: 132,
-        max: 5633481,
+        min: 10000,
+        max: 5000000,
         palette: [
-          '#b3cde0',
-          '#6497b1',
-          '#005b96',
-          '#03396c',
-          '#011f4b',
+          '#953828',
+          '#b2482c',
+          '#d0572c',
+          '#e3672e',
+          '#e77939',
+          '#e98942',
+          '#ef9f5b',
+          '#f4bb78',
+          '#fad393',
+          '#fad393',
+          '#f6f6c8',
         ].reverse(),
       })
 
