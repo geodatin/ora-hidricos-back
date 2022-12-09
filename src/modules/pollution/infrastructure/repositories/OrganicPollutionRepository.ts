@@ -71,6 +71,9 @@ export class OrganicPollutionRepository implements IOrganicPollutionRepository {
 
     getSituationAmountQuery
       .andWhere('organic_pollution.condition IS NOT NULL')
+      .andWhere(
+        `organic_pollution.condition != 'Atende ao padrão mais restritivo'`
+      )
       .groupBy('organic_pollution.condition')
       .orderBy('amount', 'DESC')
 
