@@ -37,7 +37,7 @@ export class GetTimeSeriesService {
 
     timeSeries.forEach((record) => {
       response.x.push(record.year)
-      response.y.push(record.value)
+      response.y.push(record.value / 100)
     })
 
     return response

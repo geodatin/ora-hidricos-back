@@ -102,7 +102,7 @@ export class GetRankingService {
 
     for (const [index, record] of finalArea.entries()) {
       x.push(record.name)
-      data.push(record.area)
+      data.push(record.area / 100)
       position.push(index + 1)
       if (record.code === code) {
         focusPage = Math.ceil(index + 1 / pageSize)

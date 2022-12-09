@@ -35,8 +35,8 @@ export class GetStatisticsService {
     const winLossPercent = winLossArea / initialArea
 
     return {
-      currentArea,
-      winLossArea,
+      currentArea: currentArea / 100,
+      winLossArea: winLossArea / 100,
       winLossPercent,
     }
   }
