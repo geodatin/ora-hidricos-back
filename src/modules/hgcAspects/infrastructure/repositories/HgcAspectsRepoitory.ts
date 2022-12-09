@@ -32,7 +32,7 @@ export class HgcAspectsRepository implements IHgcAspectsRepository {
     const getRankingQuery = this.repository
       .createQueryBuilder('hgc')
       .select(`hgc.aspect`, 'name')
-      .addSelect('COUNT(1)', 'amount')
+      .addSelect('SUM(ST_Length(geometry::geography))/1000', 'amount')
       .where(`hgc.aspect IS NOT NULL`)
       .groupBy('hgc.aspect')
       .orderBy('amount', 'DESC')
@@ -41,7 +41,11 @@ export class HgcAspectsRepository implements IHgcAspectsRepository {
   }
 
   async getTotal(): Promise<number> {
-    const count = await this.repository.count()
+    const { count } = await this.repository
+      .createQueryBuilder('hgc')
+      .select(`SUM(ST_Length(geometry::geography))/1000`, 'count')
+      .getRawOne()
+
     return count
   }
 
