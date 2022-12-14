@@ -5,11 +5,11 @@ import { injectable } from 'tsyringe'
 export class GetShapeAsTilesService {
   async execute() {
     const featureCollection = ee.FeatureCollection(
-      'projects/ora-rh/assets/indicators/flooded-zones'
+      'projects/ora-rh/assets/indicators/flood-zones'
     )
     const { urlFormat: url } = featureCollection.getMap({
       format: 'png',
-      color: '#02607e',
+      color: '#00576d',
     })
     return { url }
   }
