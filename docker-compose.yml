@@ -1,12 +1,12 @@
 version: "3.7"
 
-services: 
-  app:    
-    build: 
+services:
+  app:
+    build:
       context: ./
       dockerfile: dockerfile
     container_name: ora-hydric
-    ports: 
-      - 91:91
-    volumes: 
+    ports:
+      - 8091:8091
+    volumes:
       - .:/usr/app
